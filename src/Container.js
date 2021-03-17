@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 //Pages
 import Home from "./Pages/Home";
 import SingleTest from "./Pages/SingleTest";
+import Login from "./Pages/SingleTest";
 //Components
 import SideBar from "./Components/SideBar";
 
@@ -24,6 +25,7 @@ function Container() {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/test" component={SingleTest} />
+        <Route exact path="/login" component={Login} />
         {/* <Route exact path="/" component={} />
         <Route exact path="/" component={} />
         <Redirect to="/" /> */}
