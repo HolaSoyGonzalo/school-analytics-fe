@@ -52,7 +52,7 @@ const LoginForm = (props) => {
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <LoginForm>
+        <LoginFormStyled>
           <input
             required
             id="email"
@@ -67,8 +67,8 @@ const LoginForm = (props) => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
           />
-        </LoginForm>
-        <LoginButton type="submit">Log In</LoginButton>
+        </LoginFormStyled>
+        <LoginButtonStyled type="submit">Log In</LoginButtonStyled>
       </Form>
     </>
   );
@@ -77,7 +77,7 @@ export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(LoginForm)
 );
 
-const LoginForm = styled.div`
+const LoginFormStyled = styled.div`
   margin-top: 2rem;
   margin-bottom: 10px;
   input {
@@ -93,7 +93,7 @@ const LoginForm = styled.div`
   }
 `;
 
-const LoginButton = styled.div`
+const LoginButtonStyled = styled.div`
   background-color: rgba(var(--d69, 0, 149, 246), 1);
   color: white;
   border: 0px;
