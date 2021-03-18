@@ -15,20 +15,10 @@ function LoginCard() {
           <div className="reg-form-header">
             {/* <img src={logo2} /> */}
             <LoginForm />
-            <div className="hrs">
-              <p className="ml-3 mr-3 text-muted mt-3">OR</p>
-            </div>
-            <p>Forgot password?</p>
           </div>
         </Card.Body>
       </Card>
-      <Card style={{ width: "21rem" }} className="login">
-        <Card.Body>
-          <div>
-            Don't have an account? <Link to="/register">Sign up</Link>
-          </div>
-        </Card.Body>
-      </Card>
+      <Card style={{ width: "21rem" }} className="login"></Card>
     </>
   );
 }

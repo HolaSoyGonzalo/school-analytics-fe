@@ -16,15 +16,12 @@ const mapDispatchToProps = (dispatch) => ({
   loginUserWithThunk: (credentls) =>
     dispatch(async (dispatch, getState) => {
       try {
-        const response = await fetch(
-          "https://school-analytics-be.herokuapp.com/home/users/login",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify(credentls),
-          }
-        );
+        const response = await fetch("http://localhost:9999/home/user/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: JSON.stringify(credentls),
+        });
         if (response.ok) {
           const resp = await response.json();
           dispatch({
