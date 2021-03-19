@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import { authorise } from "./Auth";
 //Pages
 import Home from "./Pages/Home";
@@ -30,7 +35,7 @@ const Container = (props) => {
         <>
           <Switch>
             <Route exact path="/login" component={Login} />
-            <Redirect to="/login" />
+            <Redirect to="/" />
           </Switch>
         </>
       ) : (
@@ -42,7 +47,7 @@ const Container = (props) => {
           </Switch>
         </>
       )}
-      {props.app.isLoading && <FullPageLoader />}
+      {props.app.isLoading && <LoaderFull />}
     </Router>
   );
 };
@@ -57,4 +62,4 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({ type: "DISPLAY_ERRORS", payload: boolean }),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(Container);
