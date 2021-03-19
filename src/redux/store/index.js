@@ -12,8 +12,8 @@ const composedEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const initialState = {
   user: {
-    name: "",
-    surname: "",
+    firstname: "",
+    lastname: "",
     class: "",
     exams: [],
   },

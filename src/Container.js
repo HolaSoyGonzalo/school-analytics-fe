@@ -1,16 +1,12 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect,
-} from "react-router-dom";
-import { authorise } from "./Auth";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { authorise } from "./Auth/Auth";
 //Pages
 import Home from "./Pages/Home";
 import SingleTest from "./Pages/SingleTest";
 import Login from "./Pages/Login";
+import Register from "./Pages/Register";
 //Components
 import SideBar from "./Components/SideBar";
 //Loaders
@@ -43,6 +39,7 @@ const Container = (props) => {
       <Route path="/" component={SideBar} />
       <Switch>
         <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
         <Route exact path="/" component={Home} />
         <Route exact path="/test" component={SingleTest} />
       </Switch>
