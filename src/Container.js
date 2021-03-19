@@ -31,7 +31,7 @@ const Container = (props) => {
 
   return (
     <Router>
-      {!props.app.isLoggedIn && !props.user.username ? (
+      {/* {!props.app.isLoggedIn && !props.user.username ? (
         <>
           <Switch>
             <Route exact path="/login" component={Login} />
@@ -39,14 +39,15 @@ const Container = (props) => {
           </Switch>
         </>
       ) : (
-        <>
-          <Route path="/" component={SideBar} />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/test" component={SingleTest} />
-          </Switch>
-        </>
-      )}
+        <> */}
+      <Route path="/" component={SideBar} />
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/test" component={SingleTest} />
+      </Switch>
+      {/* </>
+      )} */}
       {props.app.isLoading && <LoaderFull />}
     </Router>
   );
