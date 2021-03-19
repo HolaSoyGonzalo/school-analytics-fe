@@ -1,9 +1,14 @@
 export default function (state = {}, action) {
   switch (action.type) {
-    case "REGISTER_USER":
+    case "SET_ERROR":
       return {
         ...state,
-        user: action.payload,
+        errors: action.payload,
+      };
+    case "DISPLAY_ERRORS":
+      return {
+        ...state,
+        show: action.payload,
       };
     default:
       return state;

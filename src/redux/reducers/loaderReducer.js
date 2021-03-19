@@ -1,9 +1,9 @@
 export default function (state = {}, action) {
   switch (action.type) {
-    case "LOGIN_USER":
+    case "SET_LOADING":
       return {
         ...state,
-        user: action.payload,
+        isLoading: action.payload,
       };
     default:
       return state;
