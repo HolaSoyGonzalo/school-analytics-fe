@@ -4,11 +4,10 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { authorise } from "./Auth/Auth";
 //Pages
 import Home from "./Pages/Home";
-import SingleTest from "./Pages/SingleTest";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 //Components
-import SideBar from "./Components/SideBar";
+import SideBar from "./Components/SideBar/";
 //Loaders
 import LoaderFull from "./Components/Loaders/LoaderFull";
 
@@ -27,24 +26,12 @@ const Container = (props) => {
 
   return (
     <Router>
-      {/* {!props.app.isLoggedIn && !props.user.username ? (
-        <>
-          <Switch>
-            <Route exact path="/login" component={Login} />
-            <Redirect to="/" />
-          </Switch>
-        </>
-      ) : (
-        <> */}
       <Route path="/" component={SideBar} />
       <Switch>
         <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/" component={Home} />
-        <Route exact path="/test" component={SingleTest} />
+        <Route exact path="/register/:token" component={Register} />
+        <Route exact path="/" component={Login} />
       </Switch>
-      {/* </>
-      )} */}
       {props.app.isLoading && <LoaderFull />}
     </Router>
   );

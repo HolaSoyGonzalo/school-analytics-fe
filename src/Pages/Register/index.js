@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import RegistrationModal from "./registrationModal";
+import RegistrationModal from "../../Components/RegistrationForm";
 import styled from "styled-components";
 
-export default function Register() {
+export default function Register(props) {
   const [myInfos, setMyInfos] = useState([]);
 
   const fetchInfos = async (props) => {
     try {
       const response = await fetch(
-        `http://localhost:9999/home/user/register/student/21e0b856-39ef-4119-b4e4-0f40764513e3`,
+        `http://localhost:9999/home/user/register/student/${props.match.params.token}`,
         {
           credentials: "include",
         }
@@ -22,7 +22,7 @@ export default function Register() {
   };
 
   useEffect(() => {
-    fetchInfos();
+    fetchInfos(props);
   }, []);
 
   return (

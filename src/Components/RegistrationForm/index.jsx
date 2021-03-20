@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Button, Alert } from "react-bootstrap";
 //Styling/Animations
 import styled from "styled-components";
-import Spinner from "../../Components/Loaders/Spinner";
+import Spinner from "../Loaders/Spinner";
 
 const mapStateToProps = (state) => state;
 
@@ -18,7 +18,7 @@ const RegistrationModal = (props) => {
   const [inputData, setInputData] = useState({
     password: "",
   });
-  const [userInfo, setUser] = useState([]);
+
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
 
@@ -30,7 +30,7 @@ const RegistrationModal = (props) => {
         password: inputData.password,
       };
       const response = await fetch(
-        `http://localhost:9999/home/user/register/student/21e0b856-39ef-4119-b4e4-0f40764513e3`,
+        `http://localhost:9999/home/user/register/student/${props.match.params.token}`,
         {
           method: "POST",
           body: JSON.stringify(newUser),

@@ -35,6 +35,8 @@ const Login = (props) => {
         credentials: "include",
       });
       const data = await response.json();
+      console.log(await response.headers.entries());
+      console.log(await response.headers.values());
       if (!data.errors) {
         if (props.errors.show) {
           props.setError();
@@ -43,7 +45,7 @@ const Login = (props) => {
         setTimeout(() => {
           setLoading(false);
           props.setUser(data);
-          props.history.push("/");
+          props.history.push("/home");
         }, 2000);
       } else {
         props.setError([{ ...data.errors[0] }]);
