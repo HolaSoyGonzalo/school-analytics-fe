@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { authorise } from "./Auth/Auth";
 //Pages
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
@@ -13,7 +12,6 @@ import LoaderFull from "./Components/Loaders/LoaderFull";
 
 const Container = (props) => {
   const start = async () => {
-    await authorise(props.setUser);
     setTimeout(() => {
       props.setLoading(false);
     }, 1300);
@@ -30,9 +28,9 @@ const Container = (props) => {
       <Switch>
         <Route exact path="/login" component={Login} />
         <Route exact path="/register/:token" component={Register} />
-        <Route exact path="/" component={Login} />
+        <Route exact path="/" component={Home} />
       </Switch>
-      {props.app.isLoading && <LoaderFull />}
+      {/* {props.app.isLoading && <LoaderFull />} */}
     </Router>
   );
 };

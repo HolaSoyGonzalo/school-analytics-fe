@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import UserInfos from "../../Components/Home/UserInfo";
+import UserInfos from "../../Components/Home/UserInfos";
 import Wave from "../../Assets/Wave";
 import styled from "styled-components";
 

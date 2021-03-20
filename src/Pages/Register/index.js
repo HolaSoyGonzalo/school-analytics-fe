@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import RegistrationModal from "../../Components/RegistrationForm";
+import RegistrationForm from "../../Components/RegistrationForm";
 import styled from "styled-components";
 
 export default function Register(props) {
@@ -27,7 +27,7 @@ export default function Register(props) {
 
   return (
     <Container fluid>
-      <RegistrationModal myInfos={myInfos} />
+      <RegistrationForm myInfos={myInfos} />
     </Container>
   );
 }

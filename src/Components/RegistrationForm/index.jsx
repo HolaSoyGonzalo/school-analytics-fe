@@ -1,20 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Button, Alert } from "react-bootstrap";
 //Styling/Animations
 import styled from "styled-components";
 import Spinner from "../Loaders/Spinner";
 
-const mapStateToProps = (state) => state;
-
-const mapDispatchToProps = (dispatch) => ({
-  setError: (error) => dispatch({ type: "SET_ERROR", payload: error }),
-  showErrors: (boolean) =>
-    dispatch({ type: "DISPLAY_ERRORS", payload: boolean }),
-});
-
-const RegistrationModal = (props) => {
+const RegistrationForm = (props) => {
   const [inputData, setInputData] = useState({
     password: "",
   });
@@ -41,19 +32,8 @@ const RegistrationModal = (props) => {
       );
       const data = await response.json();
       console.log(data);
-      if (!data.errors) {
-        props.showErrors(false);
-        props.setError();
-
-        setTimeout(() => {
-          console.log(props);
-          props.history.push("/login");
-          setLoading(false);
-        }, 2000);
-      } else {
-        props.setError([{ ...data.errors[0].msg }]);
-        props.showErrors(true);
-      }
+      props.history.push("/login");
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -79,39 +59,17 @@ const RegistrationModal = (props) => {
             </div>
           ) : (
             <form onSubmit={registrationHandler}>
-              <input
-                name="firstname"
-                value={props.myInfos.firstname}
-                onChange={(event) => inputDataHandler(event)}
-              />
-              <input
-                name="lastname"
-                value={props.myInfos.lastname}
-                onChange={(event) => inputDataHandler(event)}
-              />
+              <input name="firstname" value={props.myInfos.firstname} />
+              <input name="lastname" value={props.myInfos.lastname} />
               <input
                 name="dob"
                 placeholder="DOB HERE"
                 type="date"
                 value={props.myInfos.birthday}
-                onChange={(event) => inputDataHandler(event)}
               />
-              <input
-                name="class/section"
-                value={props.myInfos.classroomId}
-                onChange={(event) => inputDataHandler(event)}
-              />
-              <input
-                name="gender"
-                value={props.myInfos.gender}
-                onChange={(event) => inputDataHandler(event)}
-              />
-              <input
-                name="email"
-                type="email"
-                value={props.myInfos.email}
-                onChange={(event) => inputDataHandler(event)}
-              />
+              <input name="class/section" value={props.myInfos.classroomId} />
+              <input name="gender" value={props.myInfos.gender} />
+              <input name="email" type="email" value={props.myInfos.email} />
               <input
                 name="password"
                 placeholder="Password"
@@ -123,11 +81,6 @@ const RegistrationModal = (props) => {
               <Button type="submit" disabled={disabled}>
                 Confirm
               </Button>
-              {props.errors.show && (
-                <Alert className="register-error" variant="danger">
-                  {props.errors.errors[0].message}
-                </Alert>
-              )}
             </form>
           )}
         </RegisterMainContainer>
@@ -237,6 +190,4 @@ const RegisterMainContainer = styled.div`
   }
 `;
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(RegistrationModal)
-);
+export default withRouter(RegistrationForm);

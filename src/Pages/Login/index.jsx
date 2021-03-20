@@ -1,18 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
 import { Button, Alert } from "react-bootstrap";
 import styled from "styled-components";
-
 import Spinner from "../../Components/Loaders/Spinner";
-
-const mapStateToProps = (state) => state;
-
-const mapDispatchToProps = (dispatch) => ({
-  setUser: (data) => dispatch({ type: "UPDATE_USER_INFO", payload: data }),
-  setError: (error) => dispatch({ type: "SET_ERROR", payload: error }),
-  showErrors: (boolean) =>
-    dispatch({ type: "DISPLAY_ERRORS", payload: boolean }),
-});
 
 const Login = (props) => {
   const [inputData, setInputData] = useState({
@@ -35,24 +24,10 @@ const Login = (props) => {
         credentials: "include",
       });
       const data = await response.json();
-      console.log(await response.headers.entries());
-      console.log(await response.headers.values());
-      if (!data.errors) {
-        if (props.errors.show) {
-          props.setError();
-          props.showErrors(false);
-        }
-        setTimeout(() => {
-          setLoading(false);
-          props.setUser(data);
-          props.history.push("/home");
-        }, 2000);
-      } else {
-        props.setError([{ ...data.errors[0] }]);
-        props.showErrors(true);
-        setTimeout(() => {
-          setLoading(false);
-        }, 2000);
+      if (data.access) {
+        // localStorage.setItem("accessToken", data.access);
+        // localStorage.setItem("refreshToken", data.refresh);
+        props.history.push("/");
       }
     } catch (error) {
       console.log(error);
@@ -100,11 +75,6 @@ const Login = (props) => {
               <Button type="submit" disabled={disabled}>
                 Log In
               </Button>
-              {props.errors.show && (
-                <Alert className="register-error" variant="danger">
-                  {props.errors.errors[0].msg}
-                </Alert>
-              )}
             </form>
           )}
         </LoginMainContainer>
@@ -269,4 +239,4 @@ const LoginRegisterContainer = styled.div`
   }
 `;
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Login;

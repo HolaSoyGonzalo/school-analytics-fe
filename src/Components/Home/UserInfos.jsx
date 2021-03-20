@@ -13,7 +13,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const UserInfos = (props) => {
-  console.log(props);
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
 
