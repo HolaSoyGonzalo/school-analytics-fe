@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Container, Button, Alert } from "react-bootstrap";
+import React, { useState } from "react";
+import { Container, Alert } from "react-bootstrap";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 //Styling/Animations

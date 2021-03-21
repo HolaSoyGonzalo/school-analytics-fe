@@ -24,9 +24,13 @@ const Login = (props) => {
         credentials: "include",
       });
       const data = await response.json();
-      if (data.access) {
-        localStorage.setItem("accessToken", data.access);
-        localStorage.setItem("refreshToken", data.refresh);
+      console.log(data);
+      if (data.accessToken) {
+        localStorage.setItem("accessToken", data.accessToken);
+        localStorage.setItem("refreshToken", data.refreshToken);
+        console.log(data.accessToken);
+        console.log(data.refreshToken);
+        setLoading(false);
         props.history.push("/home");
       }
     } catch (error) {
@@ -49,38 +53,36 @@ const Login = (props) => {
 
   return (
     <>
-      <Suspense>
-        <LoginMainWrap>
-          <LoginMainContainer>
-            {loading ? (
-              <div className="spinner">
-                <Spinner />
-              </div>
-            ) : (
-              <form onSubmit={loginHandler}>
-                <input
-                  name="email"
-                  placeholder="Email "
-                  required
-                  value={inputData.email}
-                  onChange={(event) => inputDataHandler(event)}
-                />
-                <input
-                  name="password"
-                  placeholder="Password"
-                  type="password"
-                  required
-                  value={inputData.password}
-                  onChange={(event) => inputDataHandler(event)}
-                />
-                <Button type="submit" disabled={disabled}>
-                  Log In
-                </Button>
-              </form>
-            )}
-          </LoginMainContainer>
-        </LoginMainWrap>
-      </Suspense>
+      <LoginMainWrap>
+        <LoginMainContainer>
+          {loading ? (
+            <div className="spinner">
+              <Spinner />
+            </div>
+          ) : (
+            <form onSubmit={loginHandler}>
+              <input
+                name="email"
+                placeholder="Email "
+                required
+                value={inputData.email}
+                onChange={(event) => inputDataHandler(event)}
+              />
+              <input
+                name="password"
+                placeholder="Password"
+                type="password"
+                required
+                value={inputData.password}
+                onChange={(event) => inputDataHandler(event)}
+              />
+              <Button type="submit" disabled={disabled}>
+                Log In
+              </Button>
+            </form>
+          )}
+        </LoginMainContainer>
+      </LoginMainWrap>
     </>
   );
 };

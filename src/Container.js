@@ -26,22 +26,12 @@ const Container = (props) => {
 
   return (
     <Router>
-      {!props.app.isLoggedIn ? (
-        <>
-          <Switch>
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register/:token" component={Register} />
-          </Switch>
-        </>
-      ) : (
-        <>
-          <Route path="/" component={SideBar} />
-          <Switch>
-            <Route exact path="/home" component={Home} />
-          </Switch>
-        </>
-      )}
-      {/* {props.app.isLoading && <LoaderFull />} */}
+      <Route path="/" component={SideBar} />
+      <Switch>
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register/:token" component={Register} />
+        <Route exact path="/home" component={Home} />
+      </Switch>
     </Router>
   );
 };
