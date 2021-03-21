@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import { Button, Alert } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 //Styling/Animations
 import styled from "styled-components";
 import Spinner from "../Loaders/Spinner";

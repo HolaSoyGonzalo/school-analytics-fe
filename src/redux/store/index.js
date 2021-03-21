@@ -5,6 +5,7 @@ import appReducer from "../Reducers/app.js";
 const initialState = {
   app: {
     isLoading: false,
+    isSignedIn: false,
   },
   errors: {
     show: false,

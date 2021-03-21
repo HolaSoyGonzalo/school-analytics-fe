@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Button, Alert } from "react-bootstrap";
+import React, { useState, useEffect, Suspense } from "react";
+import { Button } from "react-bootstrap";
 import styled from "styled-components";
 import Spinner from "../../Components/Loaders/Spinner";
 
@@ -25,9 +25,9 @@ const Login = (props) => {
       });
       const data = await response.json();
       if (data.access) {
-        // localStorage.setItem("accessToken", data.access);
-        // localStorage.setItem("refreshToken", data.refresh);
-        props.history.push("/");
+        localStorage.setItem("accessToken", data.access);
+        localStorage.setItem("refreshToken", data.refresh);
+        props.history.push("/home");
       }
     } catch (error) {
       console.log(error);
@@ -49,36 +49,38 @@ const Login = (props) => {
 
   return (
     <>
-      <LoginMainWrap>
-        <LoginMainContainer>
-          {loading ? (
-            <div className="spinner">
-              <Spinner />
-            </div>
-          ) : (
-            <form onSubmit={loginHandler}>
-              <input
-                name="email"
-                placeholder="Email "
-                required
-                value={inputData.email}
-                onChange={(event) => inputDataHandler(event)}
-              />
-              <input
-                name="password"
-                placeholder="Password"
-                type="password"
-                required
-                value={inputData.password}
-                onChange={(event) => inputDataHandler(event)}
-              />
-              <Button type="submit" disabled={disabled}>
-                Log In
-              </Button>
-            </form>
-          )}
-        </LoginMainContainer>
-      </LoginMainWrap>
+      <Suspense>
+        <LoginMainWrap>
+          <LoginMainContainer>
+            {loading ? (
+              <div className="spinner">
+                <Spinner />
+              </div>
+            ) : (
+              <form onSubmit={loginHandler}>
+                <input
+                  name="email"
+                  placeholder="Email "
+                  required
+                  value={inputData.email}
+                  onChange={(event) => inputDataHandler(event)}
+                />
+                <input
+                  name="password"
+                  placeholder="Password"
+                  type="password"
+                  required
+                  value={inputData.password}
+                  onChange={(event) => inputDataHandler(event)}
+                />
+                <Button type="submit" disabled={disabled}>
+                  Log In
+                </Button>
+              </form>
+            )}
+          </LoginMainContainer>
+        </LoginMainWrap>
+      </Suspense>
     </>
   );
 };
