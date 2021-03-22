@@ -4,7 +4,7 @@ import loaderReducers from "../Reducers/loaderReducers";
 
 const initialState = {
   loaders: {
-    isLoading: true,
+    isLoading: false,
     isSignedIn: false,
   },
   errors: {

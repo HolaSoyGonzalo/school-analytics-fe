@@ -12,8 +12,8 @@ import Students from "./Pages/Students";
 import Exam from "./Pages/Exam";
 import Overview from "./Pages/Overview";
 //Components
-import UserSidebar from "./Components/SideBar/UserSidebar";
-import AdminSidebar from "./Components/SideBar/AdminSidebar";
+import SideBar from "./Components/SideBar/SideBar";
+
 //Loaders
 import LoaderFull from "./Components/Loaders/LoaderFull";
 
@@ -32,16 +32,14 @@ const Container = (props) => {
 
   return (
     <Router>
-      <Route path="/user" component={UserSidebar} />
-      <Route path="/admin" component={AdminSidebar} />
-      <Switch>
-        <Route exact path="/" component={Login} />
-        <Route exact path="/register/:token" component={Register} />
-        <Route exact path="/user" component={UserHome} />
-        <Route exact path="/exam" component={Exam} />
-        <Route exact path="/students" component={Students} />
-        <Route exact path="/overview" component={Overview} />
-      </Switch>
+      <Route path="/" component={SideBar} />
+      <Route exact path="/" component={Login} />
+      <Route exact path="/register/:token" component={Register} />
+      <Route exact path="/user" component={UserHome} />
+      <Route exact path="/admin" component={AdminHome} />
+      <Route exact path="/exam" component={Exam} />
+      <Route exact path="/students" component={Students} />
+      <Route exact path="/overview" component={Overview} />
     </Router>
   );
 };
