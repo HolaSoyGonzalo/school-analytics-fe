@@ -1,21 +1,22 @@
 import React from "react";
+import { NavDropdown } from "react-bootstrap";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 
-const SideBar = () => {
+const AdminSidebar = () => {
   const { pathname } = useLocation();
   return (
     <StyledNav>
       <h1>
-        <Link id="logo" to="/">
+        <Link id="logo" to="/admin">
           QVAKQVAK
         </Link>
       </h1>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link to="/overview">Overview</Link>
           <Line
             transition={{ duration: 0.75 }}
             initial={{ width: "0%" }}
@@ -23,12 +24,25 @@ const SideBar = () => {
           />
         </li>
         <li>
-          <Link to="/test">Test</Link>
+          <Link to="/students">Students</Link>
           <Line
             transition={{ duration: 0.75 }}
             initial={{ width: "0%" }}
             animate={{ width: pathname === "/" ? "50%" : "0%" }}
           />
+        </li>
+        <li>
+          <Link to="/exam">Exams</Link>
+          <Line
+            transition={{ duration: 0.75 }}
+            initial={{ width: "0%" }}
+            animate={{ width: pathname === "/" ? "50%" : "0%" }}
+          />
+        </li>
+        <li>
+          <NavDropdown title="Admin">
+            <NavDropdown.Item href="/exam">Action</NavDropdown.Item>
+          </NavDropdown>
         </li>
       </ul>
     </StyledNav>
@@ -60,7 +74,7 @@ const StyledNav = styled.nav`
     font-weight: lighter;
   }
   li {
-    padding-left: 10rem;
+    padding-left: 5rem;
     position: relative;
   }
   @media (max-width: 1300px) {
@@ -93,4 +107,4 @@ const Line = styled(motion.div)`
   }
 `;
 
-export default SideBar;
+export default AdminSidebar;

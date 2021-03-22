@@ -1,13 +1,19 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Authorize from "./Auth/Auth";
+
 //Pages
-import Home from "./Pages/Home";
+
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import UserHome from "./Pages/Home/UserHome";
+import AdminHome from "./Pages/Home/AdminHome";
+import Students from "./Pages/Students";
+import Exam from "./Pages/Exam";
+import Overview from "./Pages/Overview";
 //Components
-import SideBar from "./Components/SideBar/";
+import UserSidebar from "./Components/SideBar/UserSidebar";
+import AdminSidebar from "./Components/SideBar/AdminSidebar";
 //Loaders
 import LoaderFull from "./Components/Loaders/LoaderFull";
 
@@ -26,11 +32,15 @@ const Container = (props) => {
 
   return (
     <Router>
-      <Route path="/" component={SideBar} />
+      <Route path="/user" component={UserSidebar} />
+      <Route path="/admin" component={AdminSidebar} />
       <Switch>
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={Login} />
         <Route exact path="/register/:token" component={Register} />
-        <Route exact path="/home" component={Home} />
+        <Route exact path="/user" component={UserHome} />
+        <Route exact path="/exam" component={Exam} />
+        <Route exact path="/students" component={Students} />
+        <Route exact path="/overview" component={Overview} />
       </Switch>
     </Router>
   );

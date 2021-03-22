@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Alert } from "react-bootstrap";
+import { Container, Alert, Card } from "react-bootstrap";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 //Styling/Animations
@@ -18,19 +18,15 @@ const UserInfos = (props) => {
 
   return (
     <Container>
-      <form>
-        <input name="firstname" value={props.UserInfo.firstname} />
-        <input name="lastname" value={props.UserInfo.lastname} />
-        <input name="dob" value={props.UserInfo.birthday} />
-        <input name="gender" value={props.UserInfo.gender} />
-        <input name="email" value={props.UserInfo.email} />
+      <h1>
+        WELCOME {props.UserInfo.firstname} {props.UserInfo.lastname}
+      </h1>
 
-        {props.errors.show && (
-          <Alert className="register-error" variant="danger">
-            {props.errors.errors[0].message}
-          </Alert>
-        )}
-      </form>
+      {props.errors.show && (
+        <Alert className="register-error" variant="danger">
+          {props.errors.errors[0].message}
+        </Alert>
+      )}
     </Container>
   );
 };

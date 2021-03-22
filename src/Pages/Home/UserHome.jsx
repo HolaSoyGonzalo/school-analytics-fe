@@ -4,11 +4,10 @@ import Wave from "../../Assets/Wave";
 import styled from "styled-components";
 import { accessToken } from "../../api";
 
-export default function Home(props) {
+export default function UserHome(props) {
   const [UserInfo, setUserInfo] = useState([]);
 
   const fetchInfos = async () => {
-    console.log(accessToken);
     try {
       const response = await fetch("http://localhost:9999/home/user/me/", {
         credentials: "include",
@@ -31,7 +30,7 @@ export default function Home(props) {
 
   return (
     <Container fluid>
-      <h1>PORCO DIO</h1>
+      <h1>User</h1>
       <UserInfos UserInfo={UserInfo} />
       <Wave />
     </Container>

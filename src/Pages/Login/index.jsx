@@ -31,7 +31,11 @@ const Login = (props) => {
         console.log(data.accessToken);
         console.log(data.refreshToken);
         setLoading(false);
-        props.history.push("/home");
+        if (data.role === "student") {
+          props.history.push("/user");
+        } else {
+          props.history.push("/admin");
+        }
       }
     } catch (error) {
       console.log(error);

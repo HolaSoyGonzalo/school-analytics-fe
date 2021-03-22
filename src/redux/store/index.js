@@ -1,10 +1,10 @@
 import { createStore, combineReducers } from "redux";
 import errorsReducer from "../Reducers/errors";
-import appReducer from "../Reducers/app.js";
+import loaderReducers from "../Reducers/loaderReducers";
 
 const initialState = {
-  app: {
-    isLoading: false,
+  loaders: {
+    isLoading: true,
     isSignedIn: false,
   },
   errors: {
@@ -14,7 +14,7 @@ const initialState = {
 };
 
 const reducerMerge = combineReducers({
-  app: appReducer,
+  loaders: loaderReducers,
   errors: errorsReducer,
 });
 
