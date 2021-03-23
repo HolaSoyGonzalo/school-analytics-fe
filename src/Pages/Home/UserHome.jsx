@@ -18,6 +18,9 @@ export default function UserHome(props) {
       });
       const data = await response.json();
       console.log(data);
+      if (data.role === "admin") {
+        props.history.push("/admin");
+      }
       setUserInfo(data);
     } catch (error) {
       console.log(error);

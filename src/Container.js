@@ -37,7 +37,7 @@ const Container = (props) => {
       <Route exact path="/register/:token" component={Register} />
       <Route exact path="/user" component={UserHome} />
       <Route exact path="/admin" component={AdminHome} />
-      <Route exact path="/exam" component={Exam} />
+      <Route exact path="/admin/exam" component={Exam} />
       <Route exact path="/students" component={Students} />
       <Route exact path="/overview" component={Overview} />
     </Router>

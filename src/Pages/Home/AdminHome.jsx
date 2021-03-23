@@ -18,6 +18,9 @@ export default function AdminHome(props) {
       });
       const data = await response.json();
       console.log(data);
+      if (data.role === "student") {
+        props.history.push("/user");
+      }
       setUserInfo(data);
     } catch (error) {
       console.log(error);
