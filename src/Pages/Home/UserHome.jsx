@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import UserInfos from "../../Components/Home/UserInfos";
 import Wave from "../../Assets/Wave";
 import styled from "styled-components";
+
 import { accessToken } from "../../api";
 
 export default function UserHome(props) {
@@ -33,7 +34,6 @@ export default function UserHome(props) {
 
   return (
     <Container fluid>
-      <h1>User</h1>
       <UserInfos UserInfo={UserInfo} />
       <Wave />
     </Container>
