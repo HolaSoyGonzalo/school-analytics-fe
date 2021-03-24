@@ -69,7 +69,7 @@ const AddStudentForm = (props) => {
     <>
       <RegisterMainWrap>
         <RegisterMainContainer>
-          <h5>Insert New Student Info</h5>
+          <h5>Insert New Student </h5>
 
           {loading ? (
             <div className="spinner">
