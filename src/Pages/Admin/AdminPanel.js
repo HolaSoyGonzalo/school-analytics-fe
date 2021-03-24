@@ -2,12 +2,23 @@ import React from "react";
 import styled from "styled-components";
 import { Container } from "react-bootstrap";
 
+import AddClassForm from "../../Components/Admin/AddClassForm";
+import AddStudentForm from "../../Components/Admin/AddStudentForm";
+import AddCourseForm from "../../Components/Admin/AddCourseForm";
+
 export default function AdminPanel(props) {
-  console.log("PORCO DIOOOOOO");
   return (
     <Container>
       <PanelContainer fluid>
-        <h1>Hello There</h1>
+        <AddStudentContainer>
+          <AddStudentForm />
+        </AddStudentContainer>
+        <AddClassContainer>
+          <AddClassForm />
+        </AddClassContainer>
+        <AddCourseContainer>
+          <AddCourseForm />
+        </AddCourseContainer>
       </PanelContainer>
     </Container>
   );
@@ -16,10 +27,11 @@ export default function AdminPanel(props) {
 const PanelContainer = styled.div`
   margin-top: 100px;
   max-height: 100vh;
+  display: flex;
 `;
 
-const AddStudent = styled.div``;
+const AddStudentContainer = styled.div``;
 
-const AddClass = styled.div``;
+const AddClassContainer = styled.div``;
 
-const AddCourse = styled.div``;
+const AddCourseContainer = styled.div``;

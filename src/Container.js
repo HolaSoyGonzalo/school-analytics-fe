@@ -40,8 +40,8 @@ const Container = (props) => {
       <Route exact path="/admin" component={AdminHome} />
       <Route path="/admin/panel" component={AdminPanel} />
       <Route exact path="/user" component={UserHome} />
-      <Route exact path="/students" component={Students} />
-      <Route exact path="/overview" component={Overview} />
+      <Route path="/students" component={Students} />
+      <Route path="/overview" component={Overview} />
     </Router>
   );
 };
