@@ -20,7 +20,7 @@ const ProfileDropdown = (props) => {
           <Link to="/admin/panel">Admin Panel</Link>
         </li>
         <li onClick={() => props.toggleMenu()}>
-          <Link to="/">Courses</Link>
+          <Link to="/admin/addExam">Add New Exam</Link>
         </li>
         <li onClick={() => props.toggleMenu()}>
           <Link to="/">Students</Link>

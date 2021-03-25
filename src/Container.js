@@ -2,12 +2,16 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-//Pages
+//PAGES
+//Login&Register
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
-import UserHome from "./Pages/Home/UserHome";
+
+//Admin
 import AdminHome from "./Pages/Home/AdminHome";
 import AdminPanel from "./Pages/Admin/AdminPanel";
+import NewExam from "./Pages/Exam/NewExam";
+import UserHome from "./Pages/Home/UserHome";
 import Students from "./Pages/Students";
 import Exam from "./Pages/Exam";
 import Overview from "./Pages/Overview";
@@ -39,6 +43,7 @@ const Container = (props) => {
       <Route path="/admin" component={AdminNav} />
       <Route exact path="/admin" component={AdminHome} />
       <Route path="/admin/panel" component={AdminPanel} />
+      <Route path="/admin/addExam" component={NewExam} />
       <Route exact path="/user" component={UserHome} />
       <Route path="/students" component={Students} />
       <Route path="/overview" component={Overview} />
