@@ -29,6 +29,7 @@ const AddStudentsCSV = (props) => {
         }
       ).then((response) => response.json());
       alert(JSON.stringify(response));
+      setLoading(false);
       // const data = await response.json();
       // console.log(data);
       // if (!data.errors) {
