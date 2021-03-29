@@ -39,14 +39,12 @@ const ExamChart = (props) => {
 
   useEffect(() => {
     const createChart = async () => {
-      let studentExams = await props.UserExam.filter(
-        (exam) => exam.studentId === props.UserInfo.id
-      );
+      let studentExams = await props.UserExam;
       let dataForChart = [];
       let labels = [];
       await studentExams.forEach((exam) => {
         dataForChart.push({ x: exam.date, y: parseInt(exam.grade) });
-        labels.push(` ${exam.date}`);
+        labels.push(`${exam.date}`);
       });
       console.log(dataForChart);
       lineChart(dataForChart, labels);
