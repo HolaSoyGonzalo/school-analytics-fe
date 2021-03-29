@@ -44,7 +44,7 @@ const ExamChart = (props) => {
       let labels = [];
       await studentExams.forEach((exam) => {
         dataForChart.push({ x: exam.date, y: parseInt(exam.grade) });
-        labels.push(`${exam.date}`);
+        labels.push(` ${exam.date}`);
       });
       console.log(dataForChart);
       lineChart(dataForChart, labels);
