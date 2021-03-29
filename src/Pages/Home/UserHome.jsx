@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import UserInfos from "../../Components/Home/UserInfos";
+import ExamChart from "../../Components/Home/ExamChart";
 import Wave from "../../Assets/Wave";
 import styled from "styled-components";
 
-import { accessToken } from "../../api";
-
 export default function UserHome(props) {
   const [UserInfo, setUserInfo] = useState([]);
+  const [UserExam, setUserExam] = useState([]);
 
   const fetchInfos = async () => {
     try {
@@ -27,20 +27,42 @@ export default function UserHome(props) {
       console.log(error);
     }
   };
+  const fetchExams = async () => {
+    try {
+      const response = await fetch("http://localhost:9999/home/user/exams/", {
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("accessToken"),
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+
+      setUserExam(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     fetchInfos(props);
+    fetchExams(props);
   }, []);
 
   return (
     <Container fluid>
-      <UserInfos UserInfo={UserInfo} />
+      {UserInfo && <UserInfos UserInfo={UserInfo} />}
+      {UserExam.length > 0 && UserInfo && (
+        <ExamChart UserExam={UserExam} UserInfo={UserInfo} />
+      )}
       <Wave />
     </Container>
   );
 }
 
 const Container = styled.div`
+  margin-top: 10vh;
   overflow-y: scroll;
   max-height: 100vh;
 `;

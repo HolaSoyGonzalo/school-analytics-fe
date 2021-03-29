@@ -41,6 +41,7 @@ export default function AdminHome(props) {
 }
 
 const Container = styled.div`
+  margin-top: 10vh;
   overflow-y: scroll;
   max-height: 100vh;
 `;
