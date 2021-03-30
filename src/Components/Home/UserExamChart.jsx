@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({ type: "DISPLAY_ERRORS", payload: boolean }),
 });
 
-const ExamChart = (props) => {
+const UserExamChart = (props) => {
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
 
@@ -157,5 +157,5 @@ const ExamChart = (props) => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(ExamChart)
+  connect(mapStateToProps, mapDispatchToProps)(UserExamChart)
 );

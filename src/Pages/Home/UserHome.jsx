@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserInfos from "../../Components/Home/UserInfos";
-import ExamChart from "../../Components/Home/ExamChart";
+import UserExamChart from "../../Components/Home/UserExamChart";
 import Wave from "../../Assets/Wave";
 import styled from "styled-components";
 
@@ -54,7 +54,7 @@ export default function UserHome(props) {
     <Container fluid>
       {UserInfo && <UserInfos UserInfo={UserInfo} />}
       {UserExam.length > 0 && UserInfo && (
-        <ExamChart UserExam={UserExam} UserInfo={UserInfo} />
+        <UserExamChart UserExam={UserExam} UserInfo={UserInfo} />
       )}
       <Wave />
     </Container>
