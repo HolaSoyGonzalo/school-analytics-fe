@@ -27,12 +27,18 @@ const ExamChart = (props) => {
         datasets: [
           {
             data: data,
-            backgroundColor: "rgba(220,0,0,0.3)",
+
             borderColor: "#00ff80",
           },
         ],
       },
-      options: {},
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: "Math",
+        },
+      },
     });
   };
 
@@ -47,12 +53,18 @@ const ExamChart = (props) => {
         datasets: [
           {
             data: data,
-            backgroundColor: "rgba(220,0,0,0.3)",
-            borderColor: "#00ff80",
+
+            borderColor: "#ff00aa",
           },
         ],
       },
-      options: {},
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: "Math",
+        },
+      },
     });
   };
 
@@ -67,12 +79,18 @@ const ExamChart = (props) => {
         datasets: [
           {
             data: data,
-            backgroundColor: "rgba(220,0,0,0.3)",
-            borderColor: "#00ff80",
+
+            borderColor: "#3700ff",
           },
         ],
       },
-      options: {},
+      options: {
+        responsive: true,
+        title: {
+          display: true,
+          text: "Math",
+        },
+      },
     });
   };
 
