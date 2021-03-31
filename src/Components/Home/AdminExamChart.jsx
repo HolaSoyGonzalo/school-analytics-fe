@@ -3,6 +3,7 @@ import { Container, Alert, Form, Col, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Chart from "chart.js";
+import { SubjectRounded } from "@material-ui/icons";
 
 const mapStateToProps = (state) => state;
 
@@ -15,7 +16,7 @@ const mapDispatchToProps = (dispatch) => ({
 const AdminExamChart = (props) => {
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [classroom, setClassroom] = useState();
+  const [classroom, setClassroom] = useState(1);
   const [course, setCourse] = useState(1);
   const [written, setWritten] = useState(false);
 
@@ -27,13 +28,7 @@ const AdminExamChart = (props) => {
       data: {
         labels: labels,
 
-        datasets: [
-          {
-            data: data,
-            borderColor: "#00ff80",
-            backgroundColor: "transparent",
-          },
-        ],
+        datasets: data,
       },
       options: {
         responsive: true,
@@ -47,23 +42,51 @@ const AdminExamChart = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(course);
+    console.log(classroom);
+    generalChart();
   };
 
   const generalChart = async () => {
     let courseExams = await props.AllExams.filter(
-      (exam) => exam.courseId === course
+      (exam) => exam.courseId === parseInt(course)
     );
     let classAndCourseExams = await courseExams.filter(
-      (exam) => exam.user.classroomId === classroom
+      (exam) => exam.user.classroomId === parseInt(classroom)
     );
-    let dataForChart = [];
-    let labels = [];
+    console.log(classAndCourseExams);
+    let examDate = [];
+    let dataSet = [];
     await classAndCourseExams.forEach((exam) => {
-      dataForChart.push({ x: exam.date, y: parseInt(exam.grade) });
-      labels.push(` ${exam.date}`);
+      let studentInDataset = dataSet.findIndex(
+        (student) => student.id === exam.userId
+      );
+      if (studentInDataset >= 0) {
+        dataSet[studentInDataset].data.push({
+          x: exam.date,
+          y: parseFloat(exam.grade),
+        });
+      } else {
+        let data = [
+          {
+            x: exam.date,
+            y: parseFloat(exam.grade),
+          },
+        ];
+        let label = ` ${exam.user.firstname} ${exam.user.lastname}`;
+        dataSet.push({
+          id: exam.userId,
+          data: data,
+          label: label,
+          backgroundColor: "transparent",
+        });
+      }
+      if (examDate.indexOf(exam.date) < 0) {
+        examDate.push(exam.date);
+      }
     });
-    console.log(dataForChart);
-    studChart(dataForChart, labels);
+    console.log(dataSet);
+    studChart(dataSet, examDate);
   };
 
   useEffect(() => {
