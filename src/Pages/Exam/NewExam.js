@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Container } from "react-bootstrap";
 
+import AddStudentsCSV from "../../Components/Admin/AddStudents";
 import AddExamForm from "../../Components/Teacher/AddExam";
 
 export default function NewExam(props) {
@@ -11,6 +12,9 @@ export default function NewExam(props) {
         <AddExamContainer>
           <AddExamForm />
         </AddExamContainer>
+        <AddStudentsCSVContainer>
+          <AddStudentsCSV />
+        </AddStudentsCSVContainer>
       </PanelContainer>
     </Container>
   );
@@ -23,3 +27,4 @@ const PanelContainer = styled.div`
 `;
 
 const AddExamContainer = styled.div``;
+const AddStudentsCSVContainer = styled.div``;

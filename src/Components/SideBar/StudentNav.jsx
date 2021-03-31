@@ -8,7 +8,7 @@ import Logo from "../../Assets/logo.png";
 import SpriteSheet from "../../Assets/spritesheet.png";
 import { HomeIcon, HomeIconFilled } from "../../Assets/NavIcons";
 
-import ProfileDropdown from "./ProfileDropdown";
+import ProfileDropdownStudent from "./ProfileDropdownStudent";
 
 const mapStateToProps = (state) => state;
 
@@ -112,7 +112,7 @@ const StudentNav = (props) => {
           </ul>
 
           {showProfileDropdown && (
-            <ProfileDropdown
+            <ProfileDropdownStudent
               hide={animatePanel}
               toggleMenu={toggleProfileDropdownHandler}
             />

@@ -27,7 +27,6 @@ const AdminExamChart = (props) => {
       type: "line",
       data: {
         labels: labels,
-
         datasets: data,
       },
       options: {
@@ -38,6 +37,10 @@ const AdminExamChart = (props) => {
         },
       },
     });
+  };
+
+  const randomColor = () => {
+    return "#" + Math.floor(Math.random() * 16777215).toString(16);
   };
 
   const handleSubmit = (e) => {
@@ -54,6 +57,7 @@ const AdminExamChart = (props) => {
     let classAndCourseExams = await courseExams.filter(
       (exam) => exam.user.classroomId === parseInt(classroom)
     );
+    let written = await classAndCourseExams;
     console.log(classAndCourseExams);
     let examDate = [];
     let dataSet = [];
@@ -79,6 +83,7 @@ const AdminExamChart = (props) => {
           data: data,
           label: label,
           backgroundColor: "transparent",
+          borderColor: randomColor(),
         });
       }
       if (examDate.indexOf(exam.date) < 0) {
@@ -90,7 +95,7 @@ const AdminExamChart = (props) => {
   };
 
   useEffect(() => {
-    console.log(props);
+    console.log("triggered");
     generalChart();
   }, []);
 

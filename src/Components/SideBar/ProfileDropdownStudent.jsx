@@ -12,20 +12,10 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch({ type: "DISPLAY_ERRORS", payload: boolean }),
 });
 
-const ProfileDropdown = (props) => {
+const ProfileDropdownStudent = (props) => {
   return (
     <ProfileDropdownMainContainer className={props.hide ? "hide" : ""}>
       <ul>
-        <li onClick={() => props.toggleMenu()}>
-          <Link to="/admin/panel">Admin Panel</Link>
-        </li>
-        <li onClick={() => props.toggleMenu()}>
-          <Link to="/admin/addExam">CSV Upload</Link>
-        </li>
-        <li onClick={() => props.toggleMenu()}>
-          <Link to="/">Students</Link>
-        </li>
-
         <li onClick={() => props.toggleMenu()}>
           <a href="/">Log Out</a>
         </li>
@@ -47,13 +37,13 @@ const slideOutTop = keyframes`
   }`;
 
 const ProfileDropdownMainContainer = styled.div`
-  height: 150px;
+  height: 50px;
   min-width: 230px;
   text-align: center;
   position: absolute;
   z-index: 9999;
   background-color: white;
-  top: 38px;
+
   right: 15px;
   box-shadow: rgba(0, 0, 0, 0.098) 0px 0px 5px 1px;
   display: flex;
@@ -97,4 +87,7 @@ const ProfileDropdownMainContainer = styled.div`
   }
 `;
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileDropdown);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfileDropdownStudent);

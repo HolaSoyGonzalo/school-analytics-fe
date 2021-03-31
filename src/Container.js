@@ -13,7 +13,7 @@ import AdminPanel from "./Pages/Admin/AdminPanel";
 import NewExam from "./Pages/Exam/NewExam";
 import UserHome from "./Pages/Home/UserHome";
 import Students from "./Pages/Students";
-import Exam from "./Pages/Exam";
+
 import Overview from "./Pages/Overview";
 //Components
 import AdminNav from "./Components/SideBar/AdminNav";

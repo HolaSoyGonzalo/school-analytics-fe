@@ -5,7 +5,6 @@ import { Container } from "react-bootstrap";
 import AddClassForm from "../../Components/Admin/AddClassForm";
 import AddStudentForm from "../../Components/Admin/AddStudentForm";
 import AddCourseForm from "../../Components/Admin/AddCourseForm";
-import AddStudentsCSV from "../../Components/Admin/AddStudents";
 
 export default function AdminPanel(props) {
   return (
@@ -14,9 +13,6 @@ export default function AdminPanel(props) {
         <AddStudentContainer>
           <AddStudentForm />
         </AddStudentContainer>
-        <AddStudentsCSVContainer>
-          <AddStudentsCSV />
-        </AddStudentsCSVContainer>
         <AddClassContainer>
           <AddClassForm />
         </AddClassContainer>
@@ -39,5 +35,3 @@ const AddStudentContainer = styled.div``;
 const AddClassContainer = styled.div``;
 
 const AddCourseContainer = styled.div``;
-
-const AddStudentsCSVContainer = styled.div``;
