@@ -24,6 +24,7 @@ const PanelContainer = styled.div`
   margin-top: 100px;
   max-height: 100vh;
   display: flex;
+  justify-content: space-evenly;
 `;
 
 const AddExamContainer = styled.div``;

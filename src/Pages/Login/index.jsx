@@ -2,7 +2,7 @@ import React, { useState, useEffect, Suspense } from "react";
 import { Button } from "react-bootstrap";
 import styled from "styled-components";
 import Spinner from "../../Components/Loaders/Spinner";
-
+import Logo from "../../Assets/logo.png";
 const Login = (props) => {
   const [inputData, setInputData] = useState({
     email: "",
@@ -65,6 +65,14 @@ const Login = (props) => {
             </div>
           ) : (
             <form onSubmit={loginHandler}>
+              <div className="title mb-2">
+                <img
+                  src={Logo}
+                  style={{ maxWidth: "70px", maxHeight: "70px" }}
+                  alt="logo"
+                />
+                <h3>School-O</h3>
+              </div>
               <input
                 name="email"
                 placeholder="Email "
@@ -126,7 +134,7 @@ const LoginMainContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 24px;
+    margin-top: 0px;
     flex: 0 0 auto;
     padding: 0px 40px;
 

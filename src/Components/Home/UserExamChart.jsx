@@ -27,7 +27,6 @@ const UserExamChart = (props) => {
         datasets: [
           {
             data: data,
-
             borderColor: "#00ff80",
           },
         ],
@@ -36,7 +35,7 @@ const UserExamChart = (props) => {
         responsive: true,
         title: {
           display: true,
-          text: "Math",
+          text: "Results",
         },
       },
     });
@@ -141,11 +140,14 @@ const UserExamChart = (props) => {
 
   return (
     <Container>
+      <hr />
       <h2>Math</h2>
       <canvas id="mathChart"></canvas>
+      <hr />
       <h2>IT</h2>
       <canvas id="itChart"></canvas>
-      <h2>English</h2>
+      <hr />
+      <h2>Art</h2>
       <canvas id="englishChart"></canvas>
       {props.errors.show && (
         <Alert className="register-error" variant="danger">

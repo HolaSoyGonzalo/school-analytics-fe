@@ -79,7 +79,7 @@ const AdminNav = (props) => {
           <Link to="/">
             <img src={Logo} alt="logo" />
           </Link>
-          <h4>School Analytics</h4>
+          <h4>School-O</h4>
         </Left>
         <Middle>
           <input
