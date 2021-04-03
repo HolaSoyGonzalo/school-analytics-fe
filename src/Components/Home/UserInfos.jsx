@@ -52,6 +52,7 @@ const Title = styled.div`
 
   h1 {
     font-weight: bold;
+    color: #167c80;
   }
 
   span {

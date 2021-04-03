@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 //Styling/Animations
 import styled from "styled-components";
 import Spinner from "../Loaders/Spinner";
+
+const mapStateToProps = (state) => state;
+
+const mapDispatchToProps = (dispatch) => ({
+  setError: (error) => dispatch({ type: "SET_ERROR", payload: error }),
+  showErrors: (boolean) =>
+    dispatch({ type: "DISPLAY_ERRORS", payload: boolean }),
+});
 
 const AddStudentForm = (props) => {
   const [inputData, setInputData] = useState({
@@ -16,6 +25,7 @@ const AddStudentForm = (props) => {
 
   const registrationHandler = async (event) => {
     event.preventDefault();
+
     try {
       setLoading(true);
       const newUser = {
@@ -38,7 +48,8 @@ const AddStudentForm = (props) => {
       if (!data.errors) {
         setTimeout(() => {
           setLoading(false);
-          props.history.push("/admin/panel");
+          inputData.section = "";
+          inputData.year = "";
         }, 2000);
       } else {
         props.setError([{ ...data.errors[0].msg }]);
@@ -69,20 +80,30 @@ const AddStudentForm = (props) => {
             <form onSubmit={registrationHandler}>
               <input
                 name="section"
+                type="section"
                 placeholder="Section"
                 value={inputData.section}
+                required
                 onChange={(event) => inputDataHandler(event)}
               />
               <input
                 name="year"
+                type="year"
                 placeholder="Year"
+                type=""
                 value={inputData.year}
+                required
                 onChange={(event) => inputDataHandler(event)}
               />
 
               <Button type="submit" disabled={disabled}>
                 Insert
               </Button>
+              {props.errors.show && (
+                <Alert className="register-error" variant="danger">
+                  {props.errors.errors[0].message}
+                </Alert>
+              )}
             </form>
           )}
         </RegisterMainContainer>
@@ -190,4 +211,6 @@ const RegisterMainContainer = styled.div`
   }
 `;
 
-export default withRouter(AddStudentForm);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(AddStudentForm)
+);

@@ -87,6 +87,7 @@ const AdminNav = (props) => {
             placeholder="Search Student"
             value={searchInput}
             onChange={searchInputHandler}
+            disabled
           />
           <SearchIcon searchInput={searchInput} />
           <button onClick={() => clearInput()}>
