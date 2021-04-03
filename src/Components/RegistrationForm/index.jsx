@@ -12,7 +12,7 @@ const RegistrationForm = (props) => {
 
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
-
+  console.log(props.myInfos);
   const registrationHandler = async (event) => {
     event.preventDefault();
     try {
@@ -32,7 +32,7 @@ const RegistrationForm = (props) => {
       );
       const data = await response.json();
       console.log(data);
-      props.history.push("/login");
+      props.history.push("/");
       setLoading(false);
     } catch (error) {
       console.log(error);

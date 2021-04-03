@@ -10,15 +10,9 @@ export default function AdminPanel(props) {
   return (
     <Container>
       <PanelContainer fluid>
-        <AddStudentContainer>
-          <AddStudentForm />
-        </AddStudentContainer>
-        <AddClassContainer>
-          <AddClassForm />
-        </AddClassContainer>
-        <AddCourseContainer>
-          <AddCourseForm />
-        </AddCourseContainer>
+        <AddStudentForm />
+        <AddClassForm />
+        <AddCourseForm />
       </PanelContainer>
     </Container>
   );
@@ -29,9 +23,3 @@ const PanelContainer = styled.div`
   max-height: 100vh;
   display: flex;
 `;
-
-const AddStudentContainer = styled.div``;
-
-const AddClassContainer = styled.div``;
-
-const AddCourseContainer = styled.div``;

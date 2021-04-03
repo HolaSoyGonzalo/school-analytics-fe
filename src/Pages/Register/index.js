@@ -22,6 +22,7 @@ export default function Register(props) {
   };
 
   useEffect(() => {
+    console.log(myInfos);
     fetchInfos(props);
   }, []);
 
