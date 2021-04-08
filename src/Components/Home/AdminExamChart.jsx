@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Container, Alert, Form, Col, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import Chart from "chart.js";
+import { Chart, Legend, Title } from "chart.js";
 import { SubjectRounded } from "@material-ui/icons";
 
 const mapStateToProps = (state) => state;
@@ -22,6 +22,7 @@ const AdminExamChart = (props) => {
 
   const studChart = (data, labels) => {
     const canvas = document.querySelector("#studentChart");
+
     const ctx = canvas.getContext("2d");
     var myLineChart = new Chart(ctx, {
       type: "line",
@@ -31,22 +32,39 @@ const AdminExamChart = (props) => {
       },
       options: {
         responsive: true,
-        title: {
-          display: true,
-          text: "Research",
+        plugins: {
+          title: {
+            display: true,
+            text: "Research",
+          },
+          Legend: {
+            labels: {
+              usePointStyle: true,
+            },
+          },
         },
       },
     });
   };
-
   const randomColor = () => {
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
   };
 
+  const sortDate = (a, b) => {
+    let aDate = new Date(a).getTime();
+    let bDate = new Date(b).getTime();
+    return aDate - bDate;
+  };
+
+  const sortDataset = (a, b) => {
+    let aDate = new Date(a.x).getTime();
+    let bDate = new Date(b.x).getTime();
+    return aDate - bDate;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(course);
-    console.log(classroom);
+
     generalChart();
   };
 
@@ -58,7 +76,6 @@ const AdminExamChart = (props) => {
       (exam) => exam.user.classroomId === parseInt(classroom)
     );
     let written = await classAndCourseExams;
-    console.log(classAndCourseExams);
     let examDate = [];
     let dataSet = [];
     await classAndCourseExams.forEach((exam) => {
@@ -84,13 +101,19 @@ const AdminExamChart = (props) => {
           label: label,
           backgroundColor: "transparent",
           borderColor: randomColor(),
+          pointStyle: "rectRot",
+          pointRadius: 5,
         });
       }
+
       if (examDate.indexOf(exam.date) < 0) {
         examDate.push(exam.date);
       }
     });
-    console.log(dataSet);
+    await examDate.sort(sortDate);
+    await dataSet.forEach((set) => {
+      set.data.sort(sortDataset);
+    });
     studChart(dataSet, examDate);
   };
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -23,6 +23,7 @@ import StudentNav from "./Components/SideBar/StudentNav";
 import LoaderFull from "./Components/Loaders/LoaderFull";
 
 const Container = (props) => {
+  const [SelectedStudentId, setSelectedStudentId] = useState(0);
   //  const start = async () => {
   //     await Authorize(props.setUser);
   //     setTimeout(() => {
@@ -40,8 +41,27 @@ const Container = (props) => {
       <Route exact path="/" component={Login} />
       <Route exact path="/register/:token" component={Register} />
       <Route path="/user" component={StudentNav} />
-      <Route path="/admin" component={AdminNav} />
-      <Route exact path="/admin" component={AdminHome} />
+      <Route
+        path="/admin"
+        render={(props) => {
+          return (
+            <AdminNav {...props} setSelectedStudentId={setSelectedStudentId} />
+          );
+        }}
+      />
+      <Route
+        exact
+        path="/admin"
+        render={(props) => {
+          return (
+            <AdminHome
+              {...props}
+              SelectedStudentId={SelectedStudentId}
+              setSelectedStudentId={setSelectedStudentId}
+            />
+          );
+        }}
+      />
       <Route path="/admin/panel" component={AdminPanel} />
       <Route path="/admin/addExam" component={NewExam} />
       <Route exact path="/user" component={UserHome} />

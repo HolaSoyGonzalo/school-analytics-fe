@@ -14,8 +14,6 @@ import SearchBox from "./SearchBox";
 const mapStateToProps = (state) => state;
 
 const mapDispatchToProps = (dispatch) => ({
-  setSearchResults: (searchResults) =>
-    dispatch({ type: "STORE_SEARCH_RESULTS", payload: searchResults }),
   setError: (error) => dispatch({ type: "SET_ERROR", payload: error }),
   showErrors: (boolean) =>
     dispatch({ type: "DISPLAY_ERRORS", payload: boolean }),
@@ -26,25 +24,34 @@ const AdminNav = (props) => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [animatePanel, setAnimatePanel] = useState(false);
   const [searchInput, setSearchInput] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
 
-  const fetchSearchResults = async () => {
+  const fetchAllUsers = async () => {
     try {
-      const response = await fetch("http://localhost:5555/api/users/search", {
-        method: "POST",
-        body: JSON.stringify({ searchTerm: searchInput }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
+      const response = await fetch(
+        "http://localhost:9999/home/admin/allUsers/",
+        {
+          method: "GET",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("accessToken"),
+          },
+        }
+      );
       const data = await response.json();
       if (!data.errors) {
-        props.setSearchResults(data);
+        setAllUsers(data);
       }
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    fetchAllUsers();
+  }, []);
 
   const toggleProfileDropdownHandler = () => {
     if (showProfileDropdown) {
@@ -66,9 +73,26 @@ const AdminNav = (props) => {
     setSearchInput(event.target.value);
   };
 
+  const handleSearchFilter = async () => {
+    console.log(allUsers[5].firstname);
+    console.log(
+      allUsers[5].firstname.toLowerCase().indexOf(searchInput.toLowerCase())
+    );
+    const filtered = await allUsers.filter((user) => {
+      return (
+        user.firstname.toLowerCase().indexOf(searchInput.toLowerCase()) >= 0 ||
+        user.lastname.toLowerCase().indexOf(searchInput.toLowerCase()) >= 0
+      );
+    });
+    console.log(filtered);
+    setSearchResults(filtered);
+  };
+
   useEffect(() => {
     if (searchInput.length !== 0) {
-      if (!searchInput.startsWith(" ")) fetchSearchResults();
+      if (!searchInput.startsWith(" ")) {
+        handleSearchFilter();
+      }
     }
   }, [searchInput]);
 
@@ -76,7 +100,7 @@ const AdminNav = (props) => {
     <NavBarMainWrapper>
       <NavBarMainContainer>
         <Left>
-          <Link to="/">
+          <Link to="/admin">
             <img src={Logo} alt="logo" />
           </Link>
           <h4>School-O</h4>
@@ -87,15 +111,20 @@ const AdminNav = (props) => {
             placeholder="Search Student"
             value={searchInput}
             onChange={searchInputHandler}
-            disabled
           />
           <SearchIcon searchInput={searchInput} />
           <button onClick={() => clearInput()}>
             <CloseIcon />
           </button>
-          {searchInput.length !== 0 && !searchInput.startsWith(" ") && (
-            <SearchBox />
-          )}
+          {searchInput.length !== 0 &&
+            !searchInput.startsWith(" ") &&
+            searchResults.length !== 0 && (
+              <SearchBox
+                searchResults={searchResults}
+                setSelectedStudentId={props.setSelectedStudentId}
+                clearInput={clearInput}
+              />
+            )}
         </Middle>
         <Right>
           <ul>

@@ -15,16 +15,19 @@ const mapDispatchToProps = (dispatch) => ({
 const SearchBox = (props) => {
   return (
     <>
-      {props.search.searchResults.length !== 0 && (
+      {props.searchResults.length !== 0 && (
         <SearchBoxContainer>
-          {props.search.searchResults.map((result, index) => (
+          {props.searchResults.map((result, index) => (
             <SingleSearchResult key={index}>
-              <div className="profile-picture">
-                <img src={result.image} alt="profile" />
-              </div>
               <div className="user-info">
-                <Link to="#">{result.username.toLowerCase()}</Link>
-                <p>{result.name}</p>
+                <span
+                  onClick={() => {
+                    props.setSelectedStudentId(result.id);
+                    props.clearInput();
+                  }}
+                >
+                  {result.firstname} {result.lastname}
+                </span>
               </div>
             </SingleSearchResult>
           ))}

@@ -5,12 +5,14 @@ import AdminExamChart from "../../Components/Home/AdminExamChart";
 import Wave from "../../Assets/Wave";
 import styled from "styled-components";
 import AdminNav from "../../Components/SideBar/AdminNav";
+import SearchedUserChart from "../../Components/Home/SearchedUserChart";
 
 export default function AdminHome(props) {
   const [UserInfo, setUserInfo] = useState([]);
   const [AllExams, setAllExams] = useState([]);
   const [AllCourses, setAllCourses] = useState([]);
   const [AllClasses, setAllClasses] = useState([]);
+  const [SingleStudentExams, setSingleStudentExams] = useState([]);
 
   const fetchInfos = async () => {
     try {
@@ -98,19 +100,37 @@ export default function AdminHome(props) {
 
   return (
     <Container fluid>
-      {UserInfo && <UserInfos UserInfo={UserInfo} />}
-      {AllExams.length > 0 &&
-        UserInfo &&
-        AllCourses.length > 0 &&
-        AllClasses.length > 0 && (
-          <AdminExamChart
-            AllExams={AllExams}
-            UserInfo={UserInfo}
-            AllClasses={AllClasses}
-            AllCourses={AllCourses}
+      {props.SelectedStudentId === 0 ? (
+        <>
+          {UserInfo && <UserInfos UserInfo={UserInfo} />}
+          {AllExams.length > 0 &&
+            UserInfo &&
+            AllCourses.length > 0 &&
+            AllClasses.length > 0 && (
+              <AdminExamChart
+                AllExams={AllExams}
+                UserInfo={UserInfo}
+                AllClasses={AllClasses}
+                AllCourses={AllCourses}
+              />
+            )}
+        </>
+      ) : (
+        <>
+          {" "}
+          <h1>RESULTS FOR STUDENT ID: {props.SelectedStudentId}</h1>
+          <span onClick={() => props.setSelectedStudentId(0)}>
+            Back to Admin
+          </span>
+          <SearchedUserChart
+            UserExam={AllExams.filter(
+              (exam) => exam.userId === props.SelectedStudentId
+            )}
           />
-        )}
-      <Wave />
+        </>
+      )}
+
+      {/* <Wave /> */}
     </Container>
   );
 }

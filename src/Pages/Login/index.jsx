@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import styled from "styled-components";
 import Spinner from "../../Components/Loaders/Spinner";
@@ -177,80 +177,6 @@ const LoginMainContainer = styled.div`
       :disabled {
         opacity: 0.3;
       }
-    }
-  }
-`;
-
-const MiddleContainer = styled.div`
-  margin-top: 10px;
-  position: relative;
-
-  > small {
-    color: rgba(38, 38, 38, 0.5);
-    font-weight: 500;
-    ::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 12%;
-      right: 58%;
-      height: 1px;
-      background-color: grey;
-    }
-    ::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      right: 12%;
-      left: 58%;
-      height: 1px;
-      background-color: grey;
-    }
-  }
-`;
-
-const BottomContainer = styled.div`
-  margin: 20px 0px;
-  > a > button {
-    background-color: transparent;
-    border: none;
-    color: blue;
-    font-weight: 500;
-    font-size: 0.9rem;
-    display: flex;
-    align-items: center;
-    margin: 0 auto;
-    :hover {
-      background-color: transparent;
-      color: blue;
-    }
-    :active {
-      box-shadow: none;
-    }
-    svg {
-      margin-right: 0.25rem;
-    }
-  }
-
-  > a {
-    font-size: 0.75rem;
-    color: blue;
-  }
-`;
-
-const LoginRegisterContainer = styled.div`
-  background-color: white;
-  border: 1px solid gray;
-  border-radius: 1px;
-  width: 350px;
-  padding: 20px 0;
-  text-align: center;
-  > p {
-    margin: 0;
-    font-size: 14px;
-    > a {
-      color: lightblue;
-      font-weight: 500;
     }
   }
 `;

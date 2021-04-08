@@ -51,8 +51,7 @@ const RegistrationForm = (props) => {
     <>
       <RegisterMainWrap>
         <RegisterMainContainer>
-          <h5>Please Choose your Password</h5>
-
+          <h5>Welcome to School-O</h5>
           {loading ? (
             <div className="spinner">
               <Spinner />
@@ -67,9 +66,20 @@ const RegistrationForm = (props) => {
                 type="date"
                 value={props.myInfos.birthday}
               />
-              <input name="class/section" value={props.myInfos.classroomId} />
+
               <input name="gender" value={props.myInfos.gender} />
               <input name="email" type="email" value={props.myInfos.email} />
+              <h5
+                style={{
+                  width: "268px",
+                  margin: " 0 auto",
+                  fontSize: "17px",
+                  color: " grey",
+                  marginBottom: "10px",
+                }}
+              >
+                Choose your password
+              </h5>
               <input
                 name="password"
                 placeholder="Password"
