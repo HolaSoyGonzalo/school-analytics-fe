@@ -37,6 +37,16 @@ const SearchedUserChart = (props) => {
           display: true,
           text: "Results",
         },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                min: 0,
+                max: 10,
+              },
+            },
+          ],
+        },
       },
     });
   };
@@ -63,6 +73,16 @@ const SearchedUserChart = (props) => {
           display: true,
           text: "Math",
         },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                min: 0,
+                max: 10,
+              },
+            },
+          ],
+        },
       },
     });
   };
@@ -87,7 +107,16 @@ const SearchedUserChart = (props) => {
         responsive: true,
         title: {
           display: true,
-          text: "Math",
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                min: 0,
+                max: 10,
+              },
+            },
+          ],
         },
       },
     });
@@ -107,6 +136,7 @@ const SearchedUserChart = (props) => {
       console.log(dataForChart);
       mathChart(dataForChart, labels);
     };
+
     firstChart();
     const secondChart = async () => {
       let studentExams = await props.UserExam.filter(
@@ -122,6 +152,7 @@ const SearchedUserChart = (props) => {
       itChart(dataForChart, labels);
     };
     secondChart();
+
     const thirdChart = async () => {
       let studentExams = await props.UserExam.filter(
         (exam) => exam.courseId === 2

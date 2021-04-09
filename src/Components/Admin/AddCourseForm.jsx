@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import toast, { Toaster } from "react-hot-toast";
 //Styling/Animations
 import styled from "styled-components";
 import Spinner from "../Loaders/Spinner";
@@ -13,6 +14,10 @@ const AddStudentForm = (props) => {
 
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
+
+  const errorNotify = (message) => toast.error("Something went wrong");
+  const successNotify = (message) =>
+    toast.success("Course Added with Success!");
 
   const registrationHandler = async (event) => {
     event.preventDefault();
@@ -38,11 +43,15 @@ const AddStudentForm = (props) => {
       if (!data.errors) {
         setTimeout(() => {
           setLoading(false);
-          props.history.push("/admin/panel");
-        }, 2000);
+          setInputData({
+            name: "",
+            description: "",
+          });
+          successNotify("Course Added!");
+        }, 1500);
       } else {
-        props.setError([{ ...data.errors[0].msg }]);
-        props.showErrors(true);
+        errorNotify(data.errors);
+        setLoading(false);
       }
     } catch (error) {
       console.log(error);
@@ -83,6 +92,7 @@ const AddStudentForm = (props) => {
               <Button type="submit" disabled={disabled}>
                 Insert
               </Button>
+              <Toaster />
             </form>
           )}
         </RegisterMainContainer>

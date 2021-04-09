@@ -24,7 +24,8 @@ const AddStudentForm = (props) => {
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
 
-  const notify = (message) => toast(message);
+  const errorNotify = (message) => toast.error("Something went wrong");
+  const successNotify = (message) => toast.success("Class Added with Success!");
 
   const registrationHandler = async (event) => {
     event.preventDefault();
@@ -55,11 +56,15 @@ const AddStudentForm = (props) => {
             section: "",
             year: "",
           });
-          notify("Succsex");
-        }, 2000);
+          successNotify("Class Added!");
+        }, 1500);
       } else {
-        notify(data.errors);
+        errorNotify(data.errors);
         setLoading(false);
+        setInputData({
+          section: "",
+          year: "",
+        });
       }
     } catch (error) {
       console.log(error);

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Container } from "react-bootstrap";
 
 import AddStudentsCSV from "../../Components/Admin/AddStudents";
-import AddExamForm from "../../Components/Teacher/AddExam";
+import AddExamForm from "../../Components/Admin/AddExam";
 
 export default function NewExam(props) {
   return (

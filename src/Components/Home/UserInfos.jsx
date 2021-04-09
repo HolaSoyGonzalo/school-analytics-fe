@@ -51,12 +51,13 @@ const Title = styled.div`
   max-height: 100vh;
 
   h1 {
-    font-weight: bold;
+    font-weight: 600;
     color: #167c80;
   }
 
   span {
     font-weight: 300;
+    color: black;
   }
 `;
 

@@ -102,8 +102,8 @@ const AdminNav = (props) => {
         <Left>
           <Link to="/admin">
             <img src={Logo} alt="logo" />
+            <span>School-O</span>
           </Link>
-          <h4>School-O</h4>
         </Left>
         <Middle>
           <input
@@ -164,28 +164,29 @@ const NavBarMainWrapper = styled.div`
 `;
 
 const NavBarMainContainer = styled.div`
-  max-width: 975px;
-  padding: 0 20px;
-  margin: 0 auto;
+  max-width: 1000px;
+  padding: 0;
+  margin: auto;
   display: flex;
-  justify-content: space-between;
+
   align-items: center;
 `;
 
 const Left = styled.div`
   display: flex;
   align-items: center;
-  width: 360px;
+  width: 400px;
   transition: width 0.25s ease;
   @media (max-width: 975px) {
     width: 139px;
   }
   > a > img {
-    height: 29px;
-    margin-top: 7px;
+    height: 40px;
   }
-  h4 {
-    margin: 0;
+  span {
+    position: absolute;
+    color: #1a1919;
+    font-size: 30px;
   }
 `;
 

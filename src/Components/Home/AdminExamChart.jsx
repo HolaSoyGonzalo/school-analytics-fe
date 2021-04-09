@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Container, Alert, Form, Col, Button } from "react-bootstrap";
+import { Container, Alert, Form, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { Chart, Legend, Title } from "chart.js";
-import { SubjectRounded } from "@material-ui/icons";
+import { Chart } from "chart.js";
+import styled from "styled-components";
 
 const mapStateToProps = (state) => state;
 
@@ -14,17 +14,19 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const AdminExamChart = (props) => {
-  const [disabled, setDisabled] = useState(true);
-  const [loading, setLoading] = useState(false);
   const [classroom, setClassroom] = useState(1);
   const [course, setCourse] = useState(1);
-  const [written, setWritten] = useState(false);
+  const [dataSet, setDataSet] = useState({});
+
+  const [graphNode, setGraphNode] = useState(null);
 
   const studChart = (data, labels) => {
+    if (graphNode) {
+      graphNode.destroy();
+    }
     const canvas = document.querySelector("#studentChart");
-
     const ctx = canvas.getContext("2d");
-    var myLineChart = new Chart(ctx, {
+    let myLineChart = new Chart(ctx, {
       type: "line",
       data: {
         labels: labels,
@@ -32,19 +34,35 @@ const AdminExamChart = (props) => {
       },
       options: {
         responsive: true,
-        plugins: {
-          title: {
-            display: true,
-            text: "Research",
+
+        legend: {
+          position: "bottom",
+          align: "center",
+          maxHeight: 400,
+          maxWidth: 200,
+          labels: {
+            usePointStyle: true,
           },
-          Legend: {
-            labels: {
-              usePointStyle: true,
+        },
+        title: {
+          display: true,
+          style: "bold",
+          text: "Classroom's Trend",
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                min: 2,
+                max: 10,
+              },
             },
-          },
+          ],
         },
       },
     });
+
+    setGraphNode(myLineChart);
   };
   const randomColor = () => {
     return "#" + Math.floor(Math.random() * 16777215).toString(16);
@@ -64,7 +82,6 @@ const AdminExamChart = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     generalChart();
   };
 
@@ -75,7 +92,7 @@ const AdminExamChart = (props) => {
     let classAndCourseExams = await courseExams.filter(
       (exam) => exam.user.classroomId === parseInt(classroom)
     );
-    let written = await classAndCourseExams;
+
     let examDate = [];
     let dataSet = [];
     await classAndCourseExams.forEach((exam) => {
@@ -100,8 +117,10 @@ const AdminExamChart = (props) => {
           data: data,
           label: label,
           backgroundColor: "transparent",
+          borderWidth: 1.6,
+          tension: 0.3,
           borderColor: randomColor(),
-          pointStyle: "rectRot",
+          pointStyle: "rect",
           pointRadius: 5,
         });
       }
@@ -118,12 +137,11 @@ const AdminExamChart = (props) => {
   };
 
   useEffect(() => {
-    console.log("triggered");
     generalChart();
   }, []);
 
   return (
-    <Container>
+    <Container className="pb-5 ">
       <Form onSubmit={handleSubmit}>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridState">
@@ -158,12 +176,9 @@ const AdminExamChart = (props) => {
         <Form.Group id="formGridCheckbox">
           <Form.Check type="checkbox" label="Is Written ? " />
         </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
+        <Button type="submit">Submit</Button>
       </Form>
       <hr />
-      <h2>Results</h2>
       <canvas id="studentChart"></canvas>
       {props.errors.show && (
         <Alert className="register-error" variant="danger">
@@ -173,6 +188,19 @@ const AdminExamChart = (props) => {
     </Container>
   );
 };
+
+const Button = styled.button`
+  height: 40px;
+  width: 100px;
+  background-color: #167c80;
+  color: white;
+  border: 0;
+  font-family: "Poppins", sans-serif !important;
+  border-radius: 10px 10px 10px 10px;
+  :hover {
+    background-color: #1f9ca0;
+  }
+`;
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(AdminExamChart)

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
 //Styling/Animations
 import styled from "styled-components";
 import Spinner from "../Loaders/Spinner";
@@ -12,6 +13,8 @@ const AddExamForm = (props) => {
   const [disabled, setDisabled] = useState(true);
   const [loading, setLoading] = useState(false);
 
+  const successNotify = (message) =>
+    toast.success("Exams Uploaded with Success!");
   const submitFile = async () => {
     const formData = new FormData();
     formData.append("file", file);
@@ -28,8 +31,8 @@ const AddExamForm = (props) => {
           },
         }
       ).then((response) => response.json());
-      alert(JSON.stringify(response));
       setLoading(false);
+      successNotify("All good!");
       // const data = await response.json();
       // console.log(data);
       // if (!data.errors) {
@@ -66,6 +69,7 @@ const AddExamForm = (props) => {
               />
 
               <Button type="submit">Insert</Button>
+              <Toaster />
             </form>
           )}
         </RegisterMainContainer>

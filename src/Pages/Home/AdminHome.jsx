@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
-
 import UserInfos from "../../Components/Home/UserInfos";
 import AdminExamChart from "../../Components/Home/AdminExamChart";
-import Wave from "../../Assets/Wave";
 import styled from "styled-components";
-import AdminNav from "../../Components/SideBar/AdminNav";
 import SearchedUserChart from "../../Components/Home/SearchedUserChart";
 
 export default function AdminHome(props) {
@@ -129,14 +126,11 @@ export default function AdminHome(props) {
           />
         </>
       )}
-
-      {/* <Wave /> */}
     </Container>
   );
 }
 
 const Container = styled.div`
   margin-top: 10vh;
-
   max-height: 100vh;
 `;

@@ -37,6 +37,16 @@ const UserExamChart = (props) => {
           display: true,
           text: "Results",
         },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                min: 0,
+                max: 10,
+              },
+            },
+          ],
+        },
       },
     });
   };
@@ -63,6 +73,16 @@ const UserExamChart = (props) => {
           display: true,
           text: "Math",
         },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                min: 0,
+                max: 10,
+              },
+            },
+          ],
+        },
       },
     });
   };
@@ -88,6 +108,16 @@ const UserExamChart = (props) => {
         title: {
           display: true,
           text: "Math",
+        },
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                min: 0,
+                max: 10,
+              },
+            },
+          ],
         },
       },
     });
