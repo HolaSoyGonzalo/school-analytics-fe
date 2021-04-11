@@ -23,7 +23,7 @@ const Login = (props) => {
         },
         credentials: "include",
       });
-      if (response.status === 403) {
+      if (response.status === 401) {
         alert("Not authenticated");
         setLoading(false);
         return;
