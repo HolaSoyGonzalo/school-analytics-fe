@@ -23,6 +23,11 @@ const Login = (props) => {
         },
         credentials: "include",
       });
+      if (response.status === 403) {
+        alert("Not authenticated");
+        setLoading(false);
+        return;
+      }
       const data = await response.json();
       console.log(data);
       if (data.accessToken) {
