@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserInfos from "../../Components/Home/UserInfos";
+
 import AdminExamChart from "../../Components/Home/AdminExamChart";
 import styled from "styled-components";
 import SearchedUserChart from "../../Components/Home/SearchedUserChart";
@@ -114,16 +115,19 @@ export default function AdminHome(props) {
         </>
       ) : (
         <>
-          {" "}
-          <h1>RESULTS FOR STUDENT ID: {props.SelectedStudentId}</h1>
+           <Container>
+           <h1>Exams Charts for: {props.SelectedStudentId}</h1>
           <span onClick={() => props.setSelectedStudentId(0)}>
             Back to Admin
           </span>
+           </Container>
+          
           <SearchedUserChart
             UserExam={AllExams.filter(
               (exam) => exam.userId === props.SelectedStudentId
             )}
           />
+         
         </>
       )}
     </Container>

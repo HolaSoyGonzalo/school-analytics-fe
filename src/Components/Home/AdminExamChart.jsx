@@ -118,7 +118,7 @@ const AdminExamChart = (props) => {
           label: label,
           backgroundColor: "transparent",
           borderWidth: 1.6,
-          tension: 0.3,
+          tension: 0.15,
           borderColor: randomColor(),
           pointStyle: "rect",
           pointRadius: 5,

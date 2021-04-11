@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Alert } from "react-bootstrap";
+import { Container, Row, Col, Alert, Carousel } from "react-bootstrap";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Chart from "chart.js";
@@ -133,7 +133,6 @@ const SearchedUserChart = (props) => {
         dataForChart.push({ x: exam.date, y: parseInt(exam.grade) });
         labels.push(` ${exam.date}`);
       });
-      console.log(dataForChart);
       mathChart(dataForChart, labels);
     };
 
@@ -148,7 +147,6 @@ const SearchedUserChart = (props) => {
         dataForChart.push({ x: exam.date, y: parseInt(exam.grade) });
         labels.push(` ${exam.date}`);
       });
-      console.log(dataForChart);
       itChart(dataForChart, labels);
     };
     secondChart();
@@ -163,24 +161,24 @@ const SearchedUserChart = (props) => {
         dataForChart.push({ x: exam.date, y: parseInt(exam.grade) });
         labels.push(` ${exam.date}`);
       });
-      console.log(dataForChart);
       englishChart(dataForChart, labels);
     };
     thirdChart();
   }, [props.UserExam]);
 
   return (
-    <Container>
-      <h2>Math</h2>
-      <canvas id="mathChart"></canvas> <h2>IT</h2>
-      <canvas id="itChart"></canvas>
-      <h2>Art</h2>
-      <canvas id="englishChart"></canvas>
-      {props.errors.show && (
-        <Alert className="register-error" variant="danger">
-          {props.errors.errors[0].message}
-        </Alert>
-      )}
+    <Container >
+      <Carousel fade>
+        <Carousel.Item>
+          <canvas id="mathChart"></canvas> 
+        </Carousel.Item>
+        <Carousel.Item>
+          <canvas id="itChart"></canvas>
+        </Carousel.Item>
+        <Carousel.Item>
+          <canvas id="englishChart"></canvas>
+        </Carousel.Item>
+      </Carousel>
     </Container>
   );
 };
