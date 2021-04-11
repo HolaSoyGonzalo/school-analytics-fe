@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import toast, { Toaster } from "react-hot-toast";
 //Styling/Animations
 import styled from "styled-components";
@@ -91,6 +91,7 @@ const AddStudentForm = (props) => {
             </div>
           ) : (
             <form onSubmit={registrationHandler}>
+              {" "}
               <input
                 name="firstname"
                 placeholder="Student Firstname"
@@ -146,13 +147,12 @@ const AddStudentForm = (props) => {
   );
 };
 
-const RegisterMainWrap = styled.div`
+const RegisterMainWrap = styled.div``;
+
+const RegisterMainContainer = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-`;
-
-const RegisterMainContainer = styled.div`
   background-color: white;
   border: 1px solid grey;
   border-radius: 1px;
@@ -185,7 +185,7 @@ const RegisterMainContainer = styled.div`
     justify-content: center;
     margin-top: 16px;
     flex: 0 0 auto;
-    padding: 0px 40px;
+    padding: 0px 15px;
     font-size: 14px;
     > input {
       width: 268px;

@@ -20,13 +20,6 @@ const ProfileDropdown = (props) => {
           <Link to="/admin/panel">Admin Panel</Link>
         </li>
         <li onClick={() => props.toggleMenu()}>
-          <Link to="/admin/addExam">CSV Upload</Link>
-        </li>
-        <li onClick={() => props.toggleMenu()}>
-          <Link to="/">Students</Link>
-        </li>
-
-        <li onClick={() => props.toggleMenu()}>
           <a href="/">Log Out</a>
         </li>
       </ul>
@@ -47,7 +40,7 @@ const slideOutTop = keyframes`
   }`;
 
 const ProfileDropdownMainContainer = styled.div`
-  height: 150px;
+  height: 77px;
   min-width: 230px;
   text-align: center;
   position: absolute;

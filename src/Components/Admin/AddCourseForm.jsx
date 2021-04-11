@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import { Button } from "react-bootstrap";
+
 import toast, { Toaster } from "react-hot-toast";
 //Styling/Animations
 import styled from "styled-components";
@@ -101,13 +101,31 @@ const AddStudentForm = (props) => {
   );
 };
 
-const RegisterMainWrap = styled.div`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+const RegisterMainWrap = styled.div``;
+
+const Button = styled.button`
+  width: 268px;
+  height: 30px;
+  font-weight: 500;
+
+  color: #ffffff;
+  background-color: #167c80;
+  padding: 4px;
+  border: none;
+  margin-top: 6px;
+  transition: opacity 2s ease;
+  :hover {
+    background-color: #23acb1;
+  }
+  :disabled {
+    opacity: 0.5;
+  }
 `;
 
 const RegisterMainContainer = styled.div`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   border: 1px solid grey;
   border-radius: 1px;
@@ -140,7 +158,7 @@ const RegisterMainContainer = styled.div`
     justify-content: center;
     margin-top: 16px;
     flex: 0 0 auto;
-    padding: 0px 40px;
+    padding: 0px 15px;
     font-size: 14px;
     > input {
       width: 268px;
@@ -157,26 +175,7 @@ const RegisterMainContainer = styled.div`
         outline: none;
       }
     }
-    > button {
-      width: 268px;
-      height: 30px;
-      font-weight: 500;
-      font-size: 0.9rem;
-      background-color: lightblue;
-      padding: 4px;
-      border: none;
-      margin-top: 6px;
-      transition: opacity 0.25s ease;
-      :disabled {
-        opacity: 0.3;
-      }
-    }
-    > p {
-      width: 268px;
-      font-size: 12px;
-      color: lightgrey;
-      margin: 16px 0;
-    }
+
     .register-error {
       margin: 0;
       margin-top: 10px;

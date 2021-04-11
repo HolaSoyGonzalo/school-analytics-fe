@@ -78,16 +78,15 @@ const AddExamForm = (props) => {
   );
 };
 
-const RegisterMainWrap = styled.div`
+const RegisterMainWrap = styled.div``;
+
+const RegisterMainContainer = styled.div`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-`;
-
-const RegisterMainContainer = styled.div`
   background-color: white;
-  border: 1px solid grey;
-  border-radius: 1px;
+  border: 0.1px solid #dbdbdb;
+  border-radius: 5px;
   padding: 10px 0 20px;
   margin: 0 0 10px;
   text-align: center;
@@ -98,15 +97,12 @@ const RegisterMainContainer = styled.div`
     padding: 30px 149px 20px;
   }
   > h1 {
-    background-repeat: no-repeat;
-    background-position: 0 -130px;
     height: 51px;
     width: 175px;
     margin: 22px auto 12px;
   }
   > h5 {
-    width: 268px;
-    margin: 0 auto;
+    width: 200px;
     font-size: 17px;
     color: grey;
   }
@@ -117,7 +113,7 @@ const RegisterMainContainer = styled.div`
     justify-content: center;
     margin-top: 16px;
     flex: 0 0 auto;
-    padding: 0px 40px;
+    padding: 0px 5px;
     font-size: 14px;
     > input {
       width: 268px;
@@ -139,13 +135,16 @@ const RegisterMainContainer = styled.div`
       height: 30px;
       font-weight: 500;
       font-size: 0.9rem;
-      background-color: lightblue;
+      background-color: #167c80;
       padding: 4px;
       border: none;
       margin-top: 6px;
-      transition: opacity 0.25s ease;
+      transition: opacity 2s ease;
+      :hover {
+        background-color: #23acb1;
+      }
       :disabled {
-        opacity: 0.3;
+        opacity: 1;
       }
     }
     > p {

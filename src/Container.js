@@ -10,9 +10,7 @@ import Register from "./Pages/Register";
 //Admin
 import AdminHome from "./Pages/Home/AdminHome";
 import AdminPanel from "./Pages/Admin/AdminPanel";
-import NewExam from "./Pages/Exam/NewExam";
 import UserHome from "./Pages/Home/UserHome";
-import Students from "./Pages/Students";
 
 import Overview from "./Pages/Overview";
 //Components
@@ -64,10 +62,7 @@ const Container = (props) => {
         }}
       />
       <Route path="/admin/panel" component={AdminPanel} />
-      <Route path="/admin/addExam" component={NewExam} />
       <Route exact path="/user" component={UserHome} />
-      <Route path="/students" component={Students} />
-      <Route path="/overview" component={Overview} />
     </Router>
   );
 };
