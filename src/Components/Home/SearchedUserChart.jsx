@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Alert, Carousel } from "react-bootstrap";
+import styled from "styled-components";
+import { Container, Tabs, Tab } from "react-bootstrap";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Chart from "chart.js";
@@ -37,6 +38,9 @@ const SearchedUserChart = (props) => {
           display: true,
           text: "Results",
         },
+        legend: {
+          display: false,
+        },
         scales: {
           yAxes: [
             {
@@ -71,7 +75,10 @@ const SearchedUserChart = (props) => {
         responsive: true,
         title: {
           display: true,
-          text: "Math",
+          text: "Results",
+        },
+        legend: {
+          display: false,
         },
         scales: {
           yAxes: [
@@ -87,8 +94,8 @@ const SearchedUserChart = (props) => {
     });
   };
 
-  const englishChart = (data, labels) => {
-    const canvas = document.querySelector("#englishChart");
+  const artChart = (data, labels) => {
+    const canvas = document.querySelector("#artChart");
     const ctx = canvas.getContext("2d");
     var myLineChart = new Chart(ctx, {
       type: "line",
@@ -98,7 +105,6 @@ const SearchedUserChart = (props) => {
         datasets: [
           {
             data: data,
-
             borderColor: "#3700ff",
           },
         ],
@@ -107,6 +113,10 @@ const SearchedUserChart = (props) => {
         responsive: true,
         title: {
           display: true,
+          text: "Results",
+        },
+        legend: {
+          display: false,
         },
         scales: {
           yAxes: [
@@ -161,27 +171,55 @@ const SearchedUserChart = (props) => {
         dataForChart.push({ x: exam.date, y: parseInt(exam.grade) });
         labels.push(` ${exam.date}`);
       });
-      englishChart(dataForChart, labels);
+      artChart(dataForChart, labels);
     };
     thirdChart();
   }, [props.UserExam]);
 
   return (
-    <Container >
-      <Carousel fade>
-        <Carousel.Item>
-          <canvas id="mathChart"></canvas> 
-        </Carousel.Item>
-        <Carousel.Item>
-          <canvas id="itChart"></canvas>
-        </Carousel.Item>
-        <Carousel.Item>
-          <canvas id="englishChart"></canvas>
-        </Carousel.Item>
-      </Carousel>
+    <Container>
+      <NavContainer fluid>
+        <Tabs defaultActiveKey="Art" id="uncontrolled-tab-example">
+          <Tab eventKey="Art" title="Art">
+            <PanelContainer fluid>
+              <canvas id="artChart"></canvas>
+            </PanelContainer>
+          </Tab>{" "}
+          <Tab eventKey="IT" title="IT">
+            <PanelContainer fluid>
+              <canvas id="itChart"></canvas>
+            </PanelContainer>
+          </Tab>
+          <Tab eventKey="Math" title="Math">
+            <CsvContainer fluid>
+              <canvas id="mathChart"></canvas>
+            </CsvContainer>
+          </Tab>
+        </Tabs>
+      </NavContainer>
     </Container>
   );
 };
+
+const NavContainer = styled.div`
+  margin-top: 50px;
+  max-height: 100vh;
+  justify-content: space-evenly;
+  a {
+    color: black !important;
+  }
+`;
+const PanelContainer = styled.div`
+  max-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const CsvContainer = styled.div`
+  max-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+`;
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(SearchedUserChart)

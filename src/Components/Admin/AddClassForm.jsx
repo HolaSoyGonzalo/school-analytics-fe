@@ -129,7 +129,6 @@ const Button = styled.button`
   width: 268px;
   height: 30px;
   font-weight: 500;
-
   color: #ffffff;
   background-color: #167c80;
   padding: 4px;
@@ -138,6 +137,9 @@ const Button = styled.button`
   transition: opacity 2s ease;
   :hover {
     background-color: #23acb1;
+  }
+  :focus {
+    background-color: #2ecdd3;
   }
   :disabled {
     opacity: 0.5;
@@ -149,8 +151,8 @@ const RegisterMainContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: white;
-  border: 1px solid grey;
-  border-radius: 1px;
+  border: 0.1px solid #dbdbdb;
+  border-radius: 5px;
   padding: 10px 0 20px;
   margin: 0 0 10px;
   text-align: center;
@@ -168,7 +170,7 @@ const RegisterMainContainer = styled.div`
     margin: 22px auto 12px;
   }
   > h5 {
-    width: 268px;
+    width: 200px;
     margin: 0 auto;
     font-size: 17px;
     color: grey;
@@ -180,7 +182,7 @@ const RegisterMainContainer = styled.div`
     justify-content: center;
     margin-top: 16px;
     flex: 0 0 auto;
-    padding: 0px 15px;
+    padding: 0px 10px;
     font-size: 14px;
     > input {
       width: 268px;

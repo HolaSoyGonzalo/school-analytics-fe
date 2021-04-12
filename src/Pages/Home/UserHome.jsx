@@ -10,13 +10,16 @@ export default function UserHome(props) {
 
   const fetchInfos = async () => {
     try {
-      const response = await fetch("http://localhost:9999/home/user/me/", {
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("accessToken"),
-        },
-      });
+      const response = await fetch(
+        "https://school-o-be.herokuapp.com/home/user/me/",
+        {
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("accessToken"),
+          },
+        }
+      );
       const data = await response.json();
       console.log(data);
       if (data.role === "admin") {
@@ -29,13 +32,16 @@ export default function UserHome(props) {
   };
   const fetchExams = async () => {
     try {
-      const response = await fetch("http://localhost:9999/home/user/exams/", {
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("accessToken"),
-        },
-      });
+      const response = await fetch(
+        "https://school-o-be.herokuapp.com/home/user/exams/",
+        {
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("accessToken"),
+          },
+        }
+      );
       const data = await response.json();
       console.log(data);
 

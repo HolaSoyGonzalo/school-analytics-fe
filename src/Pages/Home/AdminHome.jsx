@@ -115,26 +115,42 @@ export default function AdminHome(props) {
         </>
       ) : (
         <>
-           <Container>
-           <h1>Exams Charts for: {props.SelectedStudentId}</h1>
-          <span onClick={() => props.setSelectedStudentId(0)}>
-            Back to Admin
-          </span>
-           </Container>
-          
           <SearchedUserChart
             UserExam={AllExams.filter(
               (exam) => exam.userId === props.SelectedStudentId
             )}
           />
-         
+          <Button onClick={() => props.setSelectedStudentId(0)}>
+            Back to Admin
+          </Button>
         </>
       )}
     </Container>
   );
 }
 
+const Button = styled.button`
+  width: 268px;
+  height: 30px;
+  font-weight: 500;
+
+  color: #ffffff;
+  background-color: #167c80;
+  padding: 4px;
+  border: none;
+  margin-top: 6px;
+  transition: opacity 2s ease;
+  :hover {
+    background-color: #23acb1;
+  }
+  :focus {
+    background-color: #2ecdd3;
+  }
+  :disabled {
+    opacity: 0.5;
+  }
+`;
 const Container = styled.div`
-  margin-top: 10vh;
+  margin-top: 6vh;
   max-height: 100vh;
 `;

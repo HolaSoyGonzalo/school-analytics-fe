@@ -22,7 +22,7 @@ const AddStudentsCSV = (props) => {
     try {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:9999/home/admin/uploadStudentCSV`,
+        `https://school-o-be.herokuapp.com/home/admin/uploadStudentCSV`,
         {
           method: "POST",
           body: formData,
@@ -145,6 +145,9 @@ const RegisterMainContainer = styled.div`
       transition: opacity 2s ease;
       :hover {
         background-color: #23acb1;
+      }
+      :focus {
+        background-color: #2ecdd3;
       }
       :disabled {
         opacity: 1;

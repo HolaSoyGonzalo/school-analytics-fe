@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
-import { Button, Form } from "react-bootstrap";
+
 import toast, { Toaster } from "react-hot-toast";
 //Styling/Animations
 import styled from "styled-components";
@@ -38,7 +38,7 @@ const AddStudentForm = (props) => {
         classroomId: inputData.classroomId,
       };
       const response = await fetch(
-        `http://localhost:9999/home/admin/students/add`,
+        `https://school-o-be.herokuapp.com/home/admin/students/add`,
         {
           method: "POST",
           body: JSON.stringify(newUser),
@@ -149,6 +149,27 @@ const AddStudentForm = (props) => {
 
 const RegisterMainWrap = styled.div``;
 
+const Button = styled.button`
+  width: 268px;
+  height: 30px;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: #167c80;
+  padding: 4px;
+  border: none;
+  margin-top: 6px;
+  transition: opacity 2s ease;
+  :hover {
+    background-color: #23acb1;
+  }
+  :focus {
+    background-color: #2ecdd3;
+  }
+  :disabled {
+    opacity: 0.5;
+  }
+`;
+
 const RegisterMainContainer = styled.div`
   display: inline-flex;
   align-items: center;
@@ -173,7 +194,7 @@ const RegisterMainContainer = styled.div`
     margin: 22px auto 12px;
   }
   > h5 {
-    width: 268px;
+    width: 200px;
     margin: 0 auto;
     font-size: 17px;
     color: grey;
@@ -202,20 +223,7 @@ const RegisterMainContainer = styled.div`
         outline: none;
       }
     }
-    > button {
-      width: 268px;
-      height: 30px;
-      font-weight: 500;
-      font-size: 0.9rem;
-      background-color: lightblue;
-      padding: 4px;
-      border: none;
-      margin-top: 6px;
-      transition: opacity 0.25s ease;
-      :disabled {
-        opacity: 0.3;
-      }
-    }
+
     > p {
       width: 268px;
       font-size: 12px;

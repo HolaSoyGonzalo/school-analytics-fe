@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Alert } from "react-bootstrap";
+import styled from "styled-components";
+import { Container, Tabs, Tab } from "react-bootstrap";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Chart from "chart.js";
@@ -87,8 +88,8 @@ const UserExamChart = (props) => {
     });
   };
 
-  const englishChart = (data, labels) => {
-    const canvas = document.querySelector("#englishChart");
+  const artChart = (data, labels) => {
+    const canvas = document.querySelector("#artChart");
     const ctx = canvas.getContext("2d");
     var myLineChart = new Chart(ctx, {
       type: "line",
@@ -163,26 +164,55 @@ const UserExamChart = (props) => {
         labels.push(` ${exam.date}`);
       });
       console.log(dataForChart);
-      englishChart(dataForChart, labels);
+      artChart(dataForChart, labels);
     };
     thirdChart();
   }, []);
 
   return (
     <Container>
-      <h2>Math</h2>
-      <canvas id="mathChart"></canvas> <h2>IT</h2>
-      <canvas id="itChart"></canvas>
-      <h2>Art</h2>
-      <canvas id="englishChart"></canvas>
-      {props.errors.show && (
-        <Alert className="register-error" variant="danger">
-          {props.errors.errors[0].message}
-        </Alert>
-      )}
+      <NavContainer fluid>
+        <Tabs defaultActiveKey="Art" id="uncontrolled-tab-example">
+          <Tab eventKey="Art" title="Art">
+            <PanelContainer fluid>
+              <canvas id="artChart"></canvas>
+            </PanelContainer>
+          </Tab>{" "}
+          <Tab eventKey="IT" title="IT">
+            <PanelContainer fluid>
+              <canvas id="itChart"></canvas>
+            </PanelContainer>
+          </Tab>
+          <Tab eventKey="Math" title="Math">
+            <CsvContainer fluid>
+              <canvas id="mathChart"></canvas>
+            </CsvContainer>
+          </Tab>
+        </Tabs>
+      </NavContainer>
     </Container>
   );
 };
+
+const NavContainer = styled.div`
+  margin-top: 50px;
+  max-height: 100vh;
+  justify-content: space-evenly;
+  a {
+    color: black !important;
+  }
+`;
+const PanelContainer = styled.div`
+  max-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const CsvContainer = styled.div`
+  max-height: 100vh;
+  display: flex;
+  justify-content: space-between;
+`;
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(UserExamChart)

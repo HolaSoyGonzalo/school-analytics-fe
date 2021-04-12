@@ -21,7 +21,7 @@ const AddExamForm = (props) => {
     try {
       setLoading(true);
       const response = await fetch(
-        `http://localhost:9999/home/admin/uploadExams`,
+        `https://school-o-be.herokuapp.com/home/admin/uploadExams`,
         {
           method: "POST",
           body: formData,

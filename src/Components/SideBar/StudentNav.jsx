@@ -29,14 +29,17 @@ const StudentNav = (props) => {
 
   const fetchSearchResults = async () => {
     try {
-      const response = await fetch("http://localhost:5555/api/users/search", {
-        method: "POST",
-        body: JSON.stringify({ searchTerm: searchInput }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://school-o-be.herokuapp.com/api/users/search",
+        {
+          method: "POST",
+          body: JSON.stringify({ searchTerm: searchInput }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
       const data = await response.json();
       if (!data.errors) {
         props.setSearchResults(data);

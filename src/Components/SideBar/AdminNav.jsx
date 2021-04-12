@@ -30,7 +30,7 @@ const AdminNav = (props) => {
   const fetchAllStudents = async () => {
     try {
       const response = await fetch(
-        "http://localhost:9999/home/admin/students/all",
+        "https://school-o-be.herokuapp.com/home/admin/students/all",
         {
           method: "GET",
           credentials: "include",

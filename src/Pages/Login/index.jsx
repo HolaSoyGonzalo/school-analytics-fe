@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
+
 import styled from "styled-components";
 import Spinner from "../../Components/Loaders/Spinner";
 import Logo from "../../Assets/logo.png";
@@ -15,14 +15,17 @@ const Login = (props) => {
     event.preventDefault();
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:9999/home/user/login", {
-        method: "POST",
-        body: JSON.stringify(inputData),
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      });
+      const response = await fetch(
+        "https://school-o-be.herokuapp.com/home/user/login",
+        {
+          method: "POST",
+          body: JSON.stringify(inputData),
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }
+      );
       if (response.status === 401) {
         alert("Not authenticated");
         setLoading(false);
@@ -104,6 +107,28 @@ const Login = (props) => {
   );
 };
 
+const Button = styled.button`
+  width: 268px;
+  height: 30px;
+  font-weight: 500;
+
+  color: #ffffff;
+  background-color: #167c80;
+  padding: 4px;
+  border: none;
+  margin-top: 6px;
+  transition: opacity 2s ease;
+  :hover {
+    background-color: #23acb1;
+  }
+  :focus {
+    background-color: #2ecdd3;
+  }
+  :disabled {
+    opacity: 0.5;
+  }
+`;
+
 const LoginMainWrap = styled.div`
   display: flex;
   flex-direction: column;
@@ -115,7 +140,7 @@ const LoginMainWrap = styled.div`
 const LoginMainContainer = styled.div`
   background-color: white;
   border: 1px solid grey;
-  border-radius: 1px;
+  border-radius: 10px;
   padding: 10px 0;
   margin: 0 0 10px;
   text-align: center;
@@ -143,16 +168,6 @@ const LoginMainContainer = styled.div`
     flex: 0 0 auto;
     padding: 0px 40px;
 
-    .register-error {
-      margin: 0;
-      margin-top: 10px;
-      background-color: transparent;
-      border: none;
-      color: red;
-      padding: 0 12px;
-      max-width: 268px;
-      font-size: 14px;
-    }
     > input {
       width: 268px;
       padding: 6px;
@@ -168,19 +183,6 @@ const LoginMainContainer = styled.div`
       }
       :focus {
         outline: none;
-      }
-    }
-    > button {
-      width: 100%;
-      height: 30px;
-      font-weight: 500;
-      font-size: 0.9rem;
-      background-color: lightblue;
-      padding: 4px;
-      border: none;
-      transition: opacity 0.25s ease;
-      :disabled {
-        opacity: 0.3;
       }
     }
   }

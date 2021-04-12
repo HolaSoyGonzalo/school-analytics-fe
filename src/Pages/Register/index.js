@@ -8,7 +8,7 @@ export default function Register(props) {
   const fetchInfos = async (props) => {
     try {
       const response = await fetch(
-        `http://localhost:9999/home/user/register/student/${props.match.params.token}`,
+        `https://school-o-be.herokuapp.com/home/user/register/student/${props.match.params.token}`,
         {
           credentials: "include",
         }
