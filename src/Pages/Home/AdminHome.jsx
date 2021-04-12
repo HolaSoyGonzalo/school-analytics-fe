@@ -14,13 +14,16 @@ export default function AdminHome(props) {
 
   const fetchInfos = async () => {
     try {
-      const response = await fetch("http://localhost:9999/home/user/me/", {
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("accessToken"),
-        },
-      });
+      const response = await fetch(
+        "https://school-o-be.herokuapp.com/home/user/me/",
+        {
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("accessToken"),
+          },
+        }
+      );
       const data = await response.json();
 
       if (data.role === "student") {
@@ -34,13 +37,16 @@ export default function AdminHome(props) {
 
   const fetchExams = async () => {
     try {
-      const response = await fetch("http://localhost:9999/home/admin/exams/", {
-        credentials: "include",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("accessToken"),
-        },
-      });
+      const response = await fetch(
+        "https://school-o-be.herokuapp.com/home/admin/exams/",
+        {
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("accessToken"),
+          },
+        }
+      );
       const data = await response.json();
       console.log(data);
       setAllExams(data);
@@ -52,7 +58,7 @@ export default function AdminHome(props) {
   const fetchClass = async () => {
     try {
       const response = await fetch(
-        "http://localhost:9999/home/admin/classrooms/",
+        "https://school-o-be.herokuapp.com/home/admin/classrooms/",
         {
           credentials: "include",
           headers: {
@@ -72,7 +78,7 @@ export default function AdminHome(props) {
   const fetchCourse = async () => {
     try {
       const response = await fetch(
-        "http://localhost:9999/home/admin/courses/",
+        "https://school-o-be.herokuapp.com/home/admin/courses/",
         {
           credentials: "include",
           headers: {
