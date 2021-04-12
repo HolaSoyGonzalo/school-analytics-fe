@@ -27,10 +27,10 @@ const AdminNav = (props) => {
   const [searchResults, setSearchResults] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
 
-  const fetchAllUsers = async () => {
+  const fetchAllStudents = async () => {
     try {
       const response = await fetch(
-        "http://localhost:9999/home/admin/allUsers/",
+        "http://localhost:9999/home/admin/students/all",
         {
           method: "GET",
           credentials: "include",
@@ -50,7 +50,7 @@ const AdminNav = (props) => {
   };
 
   useEffect(() => {
-    fetchAllUsers();
+    fetchAllStudents();
   }, []);
 
   const toggleProfileDropdownHandler = () => {
