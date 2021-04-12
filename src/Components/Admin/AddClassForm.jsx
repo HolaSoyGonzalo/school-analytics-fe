@@ -37,7 +37,7 @@ const AddStudentForm = (props) => {
         year: inputData.year,
       };
       const response = await fetch(
-        `http://localhost:9999/home/admin/class/add`,
+        `https://school-o-be.herokuapp.com/home/admin/class/add`,
         {
           method: "POST",
           body: JSON.stringify(newUser),
