@@ -17,7 +17,7 @@ const AdminExamChart = (props) => {
   const [classroom, setClassroom] = useState(1);
   const [course, setCourse] = useState(1);
   const [dataSet, setDataSet] = useState({});
-
+  const [written, setWritten] = useState(false);
   const [graphNode, setGraphNode] = useState(null);
 
   const studChart = (data, labels) => {
@@ -93,9 +93,13 @@ const AdminExamChart = (props) => {
       (exam) => exam.user.classroomId === parseInt(classroom)
     );
 
+    let fullFiltered = await classAndCourseExams.filter(
+      (exam) => exam.isWritten === written
+    );
+
     let examDate = [];
     let dataSet = [];
-    await classAndCourseExams.forEach((exam) => {
+    await fullFiltered.forEach((exam) => {
       let studentInDataset = dataSet.findIndex(
         (student) => student.id === exam.userId
       );
@@ -174,7 +178,13 @@ const AdminExamChart = (props) => {
           </Form.Group>
         </Form.Row>
         <Form.Group id="formGridCheckbox">
-          <Form.Check type="checkbox" label="Is Written ? " />
+          <Form.Check
+            type="checkbox"
+            label="Is Written ?"
+            onChange={(e) => {
+              written ? setWritten(false) : setWritten(true);
+            }}
+          ></Form.Check>
         </Form.Group>
         <Button type="submit">Submit</Button>
       </Form>
