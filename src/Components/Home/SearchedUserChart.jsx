@@ -202,21 +202,17 @@ const SearchedUserChart = (props) => {
 };
 
 const NavContainer = styled.div`
-  margin-top: 50px;
-  max-height: 100vh;
   justify-content: space-evenly;
   a {
     color: black !important;
   }
 `;
 const PanelContainer = styled.div`
-  max-height: 100vh;
   display: flex;
   justify-content: space-between;
 `;
 
 const CsvContainer = styled.div`
-  max-height: 100vh;
   display: flex;
   justify-content: space-between;
 `;
