@@ -74,10 +74,6 @@ const AdminNav = (props) => {
   };
 
   const handleSearchFilter = async () => {
-    console.log(allUsers[5].firstname);
-    console.log(
-      allUsers[5].firstname.toLowerCase().indexOf(searchInput.toLowerCase())
-    );
     const filtered = await allUsers.filter((user) => {
       return (
         user.firstname.toLowerCase().indexOf(searchInput.toLowerCase()) >= 0 ||
