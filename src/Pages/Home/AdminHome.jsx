@@ -122,14 +122,14 @@ export default function AdminHome(props) {
       ) : (
         <>
           <ContainerSearched>
-            <Button onClick={() => props.setSelectedStudentId(0)}>
-              Back to Admin
-            </Button>
             <SearchedUserChart
               UserExam={AllExams.filter(
                 (exam) => exam.userId === props.SelectedStudentId
               )}
             />
+            <Button onClick={() => props.setSelectedStudentId(0)}>
+              Back to Admin
+            </Button>
           </ContainerSearched>
         </>
       )}
@@ -145,9 +145,8 @@ const Button = styled.button`
   background-color: #167c80;
   padding: 4px;
   border: none;
-  position: absolute;
-  margin-left: 5px;
-  margin-top: 5px;
+  margin-top: 10px;
+
   transition: opacity 2s ease;
   :hover {
     background-color: #23acb1;
@@ -163,4 +162,6 @@ const Container = styled.div`
   margin-top: 6vh;
   max-height: 100vh;
 `;
-const ContainerSearched = styled.div``;
+const ContainerSearched = styled.div`
+  text-align: center;
+`;
